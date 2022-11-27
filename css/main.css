@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #5eff0a;
+  background: #ff621d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2577,7 +2577,7 @@ ul.breadcrumb li + li:last-child {
   }
 }
 body {
-  background: url("https://w.wallhaven.cc/full/we/wallhaven-wey3zp.png");
+  background: url("https://w.wallhaven.cc/full/3l/wallhaven-3l9gp9.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
