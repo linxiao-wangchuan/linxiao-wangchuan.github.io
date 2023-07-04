@@ -1,0 +1,30 @@
+/* 文章页背景 */
+#content-inner>#post{
+/* .layout_post>#post { */
+    /* color: aliceblue; */
+    /* background: rgba(255, 255, 255, .3); */
+    /* background: rgba(0, 0, 0, .5); */
+    /* background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%); */
+    /* background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%); */
+    /* background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%); */
+    /* background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%); */
+    /* background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); */
+    /* background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%); */
+    /* background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); */
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    /* font-family: '宋体'; */
+    font-family: 'SimSun';
+    /* font-weight: 700; */
+    font-size: 18px;
+  }
+  
+  /* 所有页面背景 */
+  #aside_content .card-widget,
+  #recent-posts>.recent-post-item,
+  .layout_page>div:first-child:not(.recent-posts),
+  .layout_post>#page,
+  .layout_post>#post,
+  .read-mode .layout_post>#post {
+    background: rgba(255, 255, 255, .5);
+    /* background: rgba(0, 0, 0, .5); */
+  }
