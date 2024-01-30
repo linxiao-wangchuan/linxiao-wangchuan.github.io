@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>PHP学习日志-008 | 矢幽武博客</title><meta name="author" content="矢幽武"><meta name="copyright" content="矢幽武"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="文件和目录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP学习日志-008">
+<meta property="og:url" content="http://example.com/2023/02/28/PHP-Study-008/index.html">
+<meta property="og:site_name" content="矢幽武博客">
+<meta property="og:description" content="文件和目录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/backgroude/b44.jpg">
+<meta property="article:published_time" content="2023-02-28T00:18:47.000Z">
+<meta property="article:modified_time" content="2023-03-01T00:52:16.981Z">
+<meta property="article:author" content="矢幽武">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/backgroude/b44.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://example.com/2023/02/28/PHP-Study-008/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PHP学习日志-008',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-01 08:52:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/backgroude/b44.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="矢幽武博客"><span class="site-name">矢幽武博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PHP学习日志-008</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-28T00:18:47.000Z" title="发表于 2023-02-28 08:18:47">2023-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-01T00:52:16.981Z" title="更新于 2023-03-01 08:52:16">2023-03-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PHP学习日志-008"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>文件和目录</p>
+<span id="more"></span>
+<p>和昨天一样，真正详细的补充在昨天的那片博客里面。</p>
+<h1 id="函数详解-部分"><a href="#函数详解-部分" class="headerlink" title="函数详解(部分)"></a>函数详解(部分)</h1><h2 id="fopen"><a href="#fopen" class="headerlink" title="fopen"></a>fopen</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">fopen</span>(<span class="variable">$filename</span>,<span class="variable">$mode</span>[,<span class="variable">$use_include_path</span>[,<span class="variable">$zcontext</span>]]);</span><br><span class="line"><span class="variable">$filename</span> :         要打开的文件名或 URL</span><br><span class="line"><span class="variable">$mode</span>:              打开文件的模式</span><br><span class="line"><span class="variable">$use_include_path</span>:  可选参数，规定是否在 include_path 中搜索文件</span><br><span class="line"><span class="variable">$zcontext</span>:          可选参数，文件句柄的环境设置，为一个资源</span><br></pre></td></tr></table></figure>
+
+<h3 id="附加-mode参数说明"><a href="#附加-mode参数说明" class="headerlink" title="附加-mode参数说明"></a>附加-mode参数说明</h3><p>只读：只能读取不能修改<br>只写：只能写入不能读取</p>
+<table>
+<thead>
+<tr>
+<th>mode</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#39;r&#39;</td>
+<td>只读方式打开，将文件指针指向文件头。</td>
+</tr>
+<tr>
+<td>&#39;r+&#39;</td>
+<td>读写方式打开，将文件指针指向文件头。</td>
+</tr>
+<tr>
+<td>&#39;w&#39;</td>
+<td>写入方式打开，将文件指针指向文件头并将文件大小截为零。如果文件不存在则尝试创建之。</td>
+</tr>
+<tr>
+<td>&#39;w+&#39;</td>
+<td>读写方式打开，否则行为同 &#39;w&#39;。</td>
+</tr>
+<tr>
+<td>&#39;a&#39;</td>
+<td>写入方式打开，将文件指针指向文件末尾。如果文件不存在则尝试创建之。在这种情况下，fseek() 没有效果，写入总是追加。</td>
+</tr>
+<tr>
+<td>&#39;a+&#39;</td>
+<td>读写方式打开，将文件指针指向文件末尾。如果文件不存在则尝试创建之。在这种情况下，fseek() 只相应读取位置，写入总是追加。</td>
+</tr>
+<tr>
+<td>&#39;x&#39;</td>
+<td>创建并以写入方式打开，将文件指针指向文件头。如果文件已存在，则 fopen() 调用失败并返回 false，并生成一条 E_WARNING 级别的错误信息。如果文件不存在则尝试创建之。这和给 底层的 open(2) 系统调用指定 O_EXCL</td>
+</tr>
+<tr>
+<td>&#39;x+&#39;</td>
+<td>创建并以读写方式打开，其他的行为和 &#39;x&#39; 一样。</td>
+</tr>
+<tr>
+<td>&#39;c&#39;</td>
+<td>Open the file for writing only. If the file does not exist, it is created. If it exists, it is neither truncated (as opposed to &#39;w&#39;), nor the call to this function fails (as is the case with &#39;x&#39;). The file pointer is positioned on the beginning of the file. This may be useful if it&#39;s desired to get an advisory lock (see flock()) before attempting to modify the file, as using &#39;w&#39; could truncate the file before the lock was obtained (if truncation is desired, ftruncate() can be used after the lock is requested).<br>译文（大略）:<br>打开文件仅供写入。如果该文件不存在，则创建该文件。如果它存在，它既不会被截断(与“ w”相反) ，对该函数的调用也不会失败(与“ x”的情况一样)。文件指针定位在文件的开头。如果希望在尝试修改文件之前获得一个通知锁(请参阅 ) ，那么这可能很有用，因为使用‘ w’可能会在获得锁之前截断文件(如果需要截断，则可以在请求锁之后使用 fruncate ()))。</td>
+</tr>
+<tr>
+<td>&#39;c+&#39;</td>
+<td>Open the file for reading and writing; otherwise it has the same behavior as &#39;c&#39;.<br>译文：<br>打开该文件进行读写; 否则它的行为与“ c”相同。</td>
+</tr>
+<tr>
+<td>&#39;e&#39;</td>
+<td>Set close-on-exec flag on the opened file descriptor. Only available in PHP compiled on POSIX.1-2008 conform systems.<br>译文：<br>在打开的文件描述符上设置 close-on-exec 标志。(7.0.16, 7.1.2     新增 ‘e’ 选项。)</td>
+</tr>
+</tbody></table>
+<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><h2 id="html部分要求"><a href="#html部分要求" class="headerlink" title="html部分要求"></a>html部分要求</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 提到最顶，设置下文件编码</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-type:text/html;charset=utf-8&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">// form是表单</span></span><br><span class="line"><span class="comment">// method=&quot;post&quot;                    上传的模式为post</span></span><br><span class="line"><span class="comment">// action=&quot;upload.php&quot;              上传到某个php文件进行处理</span></span><br><span class="line"><span class="comment">// enctype=&quot;multipart/form-data&quot;     文件上传所必须的属性(必须要的)：指示表单将包含二进制数据</span></span><br><span class="line"><span class="comment">// form内部部分就不多做解释了</span></span><br><span class="line">&lt;form method=<span class="string">&quot;post&quot;</span> action=<span class="string">&quot;upload.php&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">                               <span class="comment">// 限制上传文件的类型        限制上传文件的大小，单位是字节</span></span><br><span class="line">  &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;file&quot;</span> accept=<span class="string">&quot;.jpg,.gif,.png&quot;</span> maxlength=<span class="string">&quot;2097152&quot;</span>&gt;</span><br><span class="line">  &lt;button type=<span class="string">&quot;submit&quot;</span>&gt;Upload&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="php部分"><a href="#php部分" class="headerlink" title="php部分"></a>php部分</h2><h3 id="配置php-ini"><a href="#配置php-ini" class="headerlink" title="配置php.ini"></a>配置php.ini</h3><p>配置php.ini，实现文件的上传功能。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 服务器接受http上传</span></span><br><span class="line">file_uploads = On</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">memory_limit</span><br><span class="line"><span class="comment">// 设置上传大小限制</span></span><br><span class="line">upload_max_filesize = <span class="number">2</span>M</span><br><span class="line"><span class="comment">// post请求允许的最大数据量</span></span><br><span class="line">post_max_size = <span class="number">2</span>M</span><br><span class="line"><span class="comment">// 置文件上传时的临时存储目录。如果不设置，则使用系统默认的临时目录。</span></span><br><span class="line">upload_tmp_dir = /tmp</span><br><span class="line"></span><br><span class="line"><span class="comment">// 控制内存的使用阈值，超过则出现致命错误停止运行</span></span><br><span class="line"><span class="comment">// 默认值通常为 128M</span></span><br><span class="line">memory_limit = <span class="number">256</span>M</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="FILES（处理上传的form文件数据）"><a href="#FILES（处理上传的form文件数据）" class="headerlink" title="$_FILES（处理上传的form文件数据）"></a>$_FILES（处理上传的form文件数据）</h3><p>用于处理上传文件的超全局变量/多维数组。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// $_FILES使用的前提：form表单的form标签处必须要有enctype=&quot;multipart/form-data&quot;</span></span><br><span class="line"><span class="comment">// 参数如下：</span></span><br><span class="line">    name: 文件的原始名称。</span><br><span class="line">    type: 文件的 MIME 类型。</span><br><span class="line">    tmp_name: 文件上传后存储在服务器上的临时文件名。</span><br><span class="line">    error: 文件上传过程中可能产生的错误代码。</span><br><span class="line">            <span class="title function_ invoke__">UPLOAD_ERR_OK</span> (<span class="number">0</span>): 没有错误，文件上传成功。</span><br><span class="line">            <span class="title function_ invoke__">UPLOAD_ERR_INI_SIZE</span> (<span class="number">1</span>): 上传的文件大小超过了 php.ini 中 upload_max_filesize 指令的限制。</span><br><span class="line">            <span class="title function_ invoke__">UPLOAD_ERR_FORM_SIZE</span> (<span class="number">2</span>): 上传文件的大小超过了 HTML 表单中 MAX_FILE_SIZE 指令的限制。</span><br><span class="line">            <span class="title function_ invoke__">UPLOAD_ERR_PARTIAL</span> (<span class="number">3</span>): 文件只有部分被上传。</span><br><span class="line">            <span class="title function_ invoke__">UPLOAD_ERR_NO_FILE</span> (<span class="number">4</span>): 没有文件被上传。</span><br><span class="line">            <span class="title function_ invoke__">UPLOAD_ERR_NO_TMP_DIR</span> (<span class="number">6</span>): 没有找到临时文件夹。</span><br><span class="line">            <span class="title function_ invoke__">UPLOAD_ERR_CANT_WRITE</span> (<span class="number">7</span>): 文件写入磁盘失败。</span><br><span class="line">            <span class="title function_ invoke__">UPLOAD_ERR_EXTENSION</span> (<span class="number">8</span>): PHP 扩展停止了文件上传。</span><br><span class="line">    size: 文件大小，以字节为单位。</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$file_name</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">    <span class="variable">$file_size</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;size&#x27;</span>];</span><br><span class="line">    <span class="variable">$file_type</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>];</span><br><span class="line">    <span class="variable">$file_tmp</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">    <span class="variable">$file_error</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;error&#x27;</span>];</span><br><span class="line">    <span class="comment">// 进行文件上传的处理</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="文件上传相关函数"><a href="#文件上传相关函数" class="headerlink" title="文件上传相关函数"></a>文件上传相关函数</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">is_uploaded_file</span>() <span class="comment">//函数用于检查指定的文件是否是通过 HTTP POST 上传的,是，则true，否，则false</span></span><br><span class="line"><span class="title function_ invoke__">move_uploaded_file</span>() <span class="comment">//函数用于将上传的文件从临时目录移动到指定目录,只移动HTTP POST上传的文件。</span></span><br><span class="line">&gt;&gt;&gt;下面是例子</span><br><span class="line"><span class="variable">$source</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>]; <span class="comment">// 上传的临时文件路径</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$destination</span> = <span class="string">&#x27;path/to/destination&#x27;</span>; <span class="comment">// 文件移动到的目标路径</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$source</span>, <span class="variable">$destination</span>)) &#123;</span><br><span class="line">    <span class="comment">// 文件移动成功</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 文件移动失败</span></span><br><span class="line">&#125;</span><br><span class="line">&gt;&gt;&gt; 例子结束</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建处理上传文件的php文件"><a href="#创建处理上传文件的php文件" class="headerlink" title="创建处理上传文件的php文件"></a>创建处理上传文件的php文件</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_METHOD&#x27;</span>] === <span class="string">&#x27;POST&#x27;</span>) &#123;</span><br><span class="line">  <span class="comment">// 获取上传的文件</span></span><br><span class="line">  <span class="variable">$file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取上传文件的基本信息</span></span><br><span class="line">  <span class="variable">$filename</span> = <span class="variable">$file</span>[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">  <span class="variable">$filetype</span> = <span class="variable">$file</span>[<span class="string">&#x27;type&#x27;</span>];</span><br><span class="line">  <span class="variable">$filesize</span> = <span class="variable">$file</span>[<span class="string">&#x27;size&#x27;</span>];</span><br><span class="line">  <span class="variable">$filetmp</span> = <span class="variable">$file</span>[<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">  <span class="variable">$fileerror</span> = <span class="variable">$file</span>[<span class="string">&#x27;error&#x27;</span>];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 对上传文件进行验证和过滤</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="variable">$fileerror</span> === UPLOAD_ERR_OK) &#123;</span><br><span class="line">    <span class="comment">// 上传文件保存到服务器上的指定目录中</span></span><br><span class="line">    <span class="variable">$upload_dir</span> = <span class="string">&#x27;./uploads/&#x27;</span>;</span><br><span class="line">    <span class="variable">$upload_path</span> = <span class="variable">$upload_dir</span> . <span class="variable">$filename</span>;</span><br><span class="line">    <span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$filetmp</span>, <span class="variable">$upload_path</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回上传成功的反馈信息</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Upload success!&#x27;</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 返回上传失败的反馈信息</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Upload failed!&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h1><p>使用header来实现使用php文件下载其他文件。（php相当于中转站）</p>
+<h2 id="指定文件类型"><a href="#指定文件类型" class="headerlink" title="指定文件类型"></a>指定文件类型</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-type:MIME文件类型&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="指定下载文件的描述"><a href="#指定下载文件的描述" class="headerlink" title="指定下载文件的描述"></a>指定下载文件的描述</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Disposition:attachement;filename=&quot;文件名称&quot;&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="指定下载文件的大小"><a href="#指定下载文件的大小" class="headerlink" title="指定下载文件的大小"></a>指定下载文件的大小</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Length:文件大小&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="读取文件内容输出至缓冲区"><a href="#读取文件内容输出至缓冲区" class="headerlink" title="读取文件内容输出至缓冲区"></a>读取文件内容输出至缓冲区</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">readfile</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="附header"><a href="#附header" class="headerlink" title="附header"></a>附header</h2><p>向服务端发送http报头。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">除了Content-Type头，还有许多其他的HTTP头可以使用<span class="title function_ invoke__">header</span>()函数设置，例如：</span><br><span class="line"></span><br><span class="line">    Content-Length：表示响应内容的长度。</span><br><span class="line">    Cache-Control：控制缓存的行为，例如是否缓存、缓存时间等。</span><br><span class="line">    Location：重定向浏览器到新的URL。</span><br><span class="line">    Expires：设置响应过期的时间，通常与Cache-Control一起使用。</span><br><span class="line">    Set-Cookie：设置Cookie信息。</span><br><span class="line"></span><br><span class="line">在使用<span class="title function_ invoke__">header</span>()函数时，需要注意以下几点：</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">header</span>()函数必须在页面输出之前调用，否则会出现<span class="string">&quot;Headers already sent&quot;</span>错误。</span><br><span class="line">    只能设置一个相同的HTTP头，如果设置多个相同的HTTP头，只有最后一个会生效。</span><br><span class="line">    在设置Location头时，需要注意不要输出任何内容，否则会出现<span class="string">&quot;Cannot modify header information&quot;</span>错误。</span><br><span class="line"></span><br><span class="line">总的来说，<span class="title function_ invoke__">header</span>()函数是一个非常有用的函数，可以帮助我们控制服务器返回的数据以及浏览器的行为。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 其他参数</span></span><br><span class="line">在PHP中，<span class="title function_ invoke__">header</span>()函数用于向客户端发送原始的HTTP头信息。它通常用于发送一些特殊的HTTP头信息，例如：响应状态码、重定向、缓存控制、字符集、内容类型、文件下载等。下面是一些常见的HTTP头参数及其含义：</span><br><span class="line"></span><br><span class="line">    响应状态码</span><br><span class="line"></span><br><span class="line">语法：<span class="title function_ invoke__">header</span>(<span class="string">&#x27;HTTP/1.1 404 Not Found&#x27;</span>);</span><br><span class="line"></span><br><span class="line">含义：设置HTTP响应的状态码。</span><br><span class="line"></span><br><span class="line">    重定向</span><br><span class="line"></span><br><span class="line">语法：<span class="title function_ invoke__">header</span>(<span class="string">&#x27;Location: http://www.example.com/&#x27;</span>);</span><br><span class="line"></span><br><span class="line">含义：设置重定向URL，浏览器会自动跳转到该URL。需要注意的是，重定向时必须使用绝对URL，否则可能会出现错误。</span><br><span class="line"></span><br><span class="line">    缓存控制</span><br><span class="line"></span><br><span class="line">语法：<span class="title function_ invoke__">header</span>(<span class="string">&#x27;Cache-Control: no-cache, no-store, must-revalidate&#x27;</span>);</span><br><span class="line"></span><br><span class="line">含义：控制缓存的行为，例如是否缓存、缓存时间等。在上面的示例中，no-cache表示禁止缓存，no-store表示禁止存储缓存，must-revalidate表示必须重新验证缓存。</span><br><span class="line"></span><br><span class="line">    字符集</span><br><span class="line"></span><br><span class="line">语法：<span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Type: text/html; charset=UTF-8&#x27;</span>);</span><br><span class="line"></span><br><span class="line">含义：设置响应内容的字符集，通常与Content-Type一起使用。在上面的示例中，设置字符集为UTF-<span class="number">8</span>。</span><br><span class="line"></span><br><span class="line">    内容类型</span><br><span class="line"></span><br><span class="line">语法：<span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Type: text/html&#x27;</span>);</span><br><span class="line"></span><br><span class="line">含义：设置响应内容的类型。在上面的示例中，设置响应内容为HTML文档。</span><br><span class="line"></span><br><span class="line">    文件下载</span><br><span class="line"></span><br><span class="line">语法：<span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Disposition: attachment; filename=&quot;example.txt&quot;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">含义：设置响应内容为文件下载，并指定下载的文件名。在上面的示例中，将文件下载的Content-Disposition头设置为attachment，并指定文件名为example.txt。</span><br><span class="line"></span><br><span class="line">    自定义头信息</span><br><span class="line"></span><br><span class="line">语法：<span class="title function_ invoke__">header</span>(<span class="string">&#x27;X-My-Header: MyValue&#x27;</span>);</span><br><span class="line"></span><br><span class="line">含义：设置自定义的HTTP头信息。在上面的示例中，设置自定义的HTTP头信息X-My-Header，值为MyValue。</span><br><span class="line"></span><br><span class="line">需要注意的是，<span class="title function_ invoke__">header</span>()函数必须在页面输出之前调用，否则会出现<span class="string">&quot;Headers already sent&quot;</span>错误。同时，<span class="title function_ invoke__">header</span>()函数只能设置一个相同的HTTP头，如果设置多个相同的HTTP头，只有最后一个会生效。在设置Location头时，需要注意不要输出任何内容，否则会出现<span class="string">&quot;Cannot modify header information&quot;</span>错误。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">矢幽武</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/02/28/PHP-Study-008/">http://example.com/2023/02/28/PHP-Study-008/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">矢幽武博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PHP/">PHP</a></div><div class="post_share"><div class="social-share" data-image="/img/backgroude/b44.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/01/PHP-Study-009/" title="PHP学习日志-009"><img class="cover" src="/img/backgroude/b3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PHP学习日志-009</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/27/PHP-Study-007/" title="PHP学习日志-007"><img class="cover" src="/img/backgroude/b23.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PHP学习日志-007</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/04/05/PHP-Study-017/" title="PHP学习日志-017-数据库-04"><img class="cover" src="/img/backgroude/b43.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-05</div><div class="title">PHP学习日志-017-数据库-04</div></div></a></div><div><a href="/2023/04/04/PHP-Study-016/" title="PHP-Study-016"><img class="cover" src="/img/backgroude/b10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-04</div><div class="title">PHP-Study-016</div></div></a></div><div><a href="/2023/03/22/PHP-Study-015/" title="PHP-学习日志-015"><img class="cover" src="/img/backgroude/b23.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-22</div><div class="title">PHP-学习日志-015</div></div></a></div><div><a href="/2023/03/07/PHP-Study-014/" title="PHP学习日志-014(放缓)"><img class="cover" src="/img/backgroude/b40.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-07</div><div class="title">PHP学习日志-014(放缓)</div></div></a></div><div><a href="/2023/03/05/PHP-Study-013/" title="PHP学习日志-013-数据库-03"><img class="cover" src="https://w.wallhaven.cc/full/3l/wallhaven-3l38gv.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-05</div><div class="title">PHP学习日志-013-数据库-03</div></div></a></div><div><a href="/2023/03/04/PHP-Study-012/" title="PHP学习日志-012-数据库-02"><img class="cover" src="/img/backgroude/b15.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-04</div><div class="title">PHP学习日志-012-数据库-02</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">矢幽武</div><div class="author-info__description">生灵造物，百力奋心<br>机遇自争，各凭本事<br>没有攻不破的系统 ，<br> 只有不努力的黑客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/linxiao-wangchuan"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><b><font color="#e66b6d">威</font> <font color="#e66d98">武</font> <font color="#e66cc6">不</font> <font color="#cc6de6">屈</font> ,<font color="#9770e6">成</font> <font color="#6d93e6">为</font> <font color="#6fcde6">自</font> <font color="#72e6b6">己</font> <font color="#72e689">不败的</font> <font color="#99e670">信条</font>, <font color="#cde670">剑</font> <font color="#e6df72">走</font> <font color="#e6c073">偏</font> <font color="#e6a271">锋</font> ,<font color="#e6796f">缥</font> <font color="#e65454">缈</font> <font color="#e63333">孤</font> <font color="#e62c2c">鸿</font> <font color="#e60101">影</font> <font color="#e60101"> --孤志</font></b> <p align="center"><img src="https://haiyong.site/img/img-blog.csdnimg.cn/f7384c88956d4378b72e47548e19c9f8.gif" width="50" alt="mao"></p> <p align="center" style="color:yellow;font-weight:800">微信号：无</p> <p align="center" style="color:red;font-weight:800">QQ：无</p> -------------------------------- <p style="color:#5a1216;font-weight:800">每日更新指南：</p> <p style="color:#4d1018;font-weight:800">刷题/记录总知识一般会沿用上次的文档</p> <p style="color:#f03752;font-weight:800">学习新知将新开文档</p></div></div><div class="xpand" style="height:10px;"></div><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3-%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">函数详解(部分)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#fopen"><span class="toc-number">1.1.</span> <span class="toc-text">fopen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%84%E5%8A%A0-mode%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.1.</span> <span class="toc-text">附加-mode参数说明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">2.</span> <span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#html%E9%83%A8%E5%88%86%E8%A6%81%E6%B1%82"><span class="toc-number">2.1.</span> <span class="toc-text">html部分要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php%E9%83%A8%E5%88%86"><span class="toc-number">2.2.</span> <span class="toc-text">php部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEphp-ini"><span class="toc-number">2.2.1.</span> <span class="toc-text">配置php.ini</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FILES%EF%BC%88%E5%A4%84%E7%90%86%E4%B8%8A%E4%BC%A0%E7%9A%84form%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%EF%BC%89"><span class="toc-number">2.2.2.</span> <span class="toc-text">$_FILES（处理上传的form文件数据）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.3.</span> <span class="toc-text">文件上传相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%A4%84%E7%90%86%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E7%9A%84php%E6%96%87%E4%BB%B6"><span class="toc-number">2.2.4.</span> <span class="toc-text">创建处理上传文件的php文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">3.</span> <span class="toc-text">文件下载</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">指定文件类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.2.</span> <span class="toc-text">指定下载文件的描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="toc-number">3.3.</span> <span class="toc-text">指定下载文件的大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA%E8%87%B3%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-number">3.4.</span> <span class="toc-text">读取文件内容输出至缓冲区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84header"><span class="toc-number">3.5.</span> <span class="toc-text">附header</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具"><img src="/img/backgroude/b14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SEC-工具-认识kali部分工具"/></a><div class="content"><a class="title" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具">SEC-工具-认识kali部分工具</a><time datetime="2024-01-06T02:12:32.000Z" title="发表于 2024-01-06 10:12:32">2024-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置"><img src="/img/backgroude/b41.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kali虚拟机网卡配置"/></a><div class="content"><a class="title" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置">kali虚拟机网卡配置</a><time datetime="2024-01-05T06:15:45.000Z" title="发表于 2024-01-05 14:15:45">2024-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试"><img src="/img/backgroude/b19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试学习-渗透测试"/></a><div class="content"><a class="title" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试">面试学习-渗透测试</a><time datetime="2023-12-19T06:27:03.000Z" title="发表于 2023-12-19 14:27:03">2023-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题"><img src="/img/backgroude/b11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web习题--033--某赛题"/></a><div class="content"><a class="title" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题">CTF之Web习题--033--某赛题</a><time datetime="2023-11-29T00:19:08.000Z" title="发表于 2023-11-29 08:19:08">2023-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境"><img src="/img/backgroude/b43.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web总结--协议/系统/环境"/></a><div class="content"><a class="title" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境">CTF之Web总结--协议/系统/环境</a><time datetime="2023-10-13T14:19:08.000Z" title="发表于 2023-10-13 22:19:08">2023-10-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 矢幽武</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, {"emotion":"twemoji","placeholder":"在此处输入评论"}))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || ![object Object]) {
+    if ([object Object]) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="/js/sun_moon.js" async></script><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = '/2022/,/2023/,/2024/'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'eb7ef47cda914d65b0b394ce50c15242';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'true';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>

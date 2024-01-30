@@ -1,0 +1,706 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>前端学习-css-01-基础概述 | 矢幽武博客</title><meta name="author" content="矢幽武"><meta name="copyright" content="矢幽武"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="CSS 简介CSS-层叠样式表( Cascading Style Sheets)，简称css 有时我们也会称之为CSS式表或级联样式表CSS是也是一种标记语言 CSS 主要用于设置HTML 页面中的文本内容(字体、大小、对齐方式等)图片的外形(宽高、边框样式边距等)以及版面的布局和外观显示样式 总结:html(结构)与css(样式)相分离(这个思想做项目会直接用到)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端学习-css-01-基础概述">
+<meta property="og:url" content="http://example.com/2023/02/10/web-study-03/index.html">
+<meta property="og:site_name" content="矢幽武博客">
+<meta property="og:description" content="CSS 简介CSS-层叠样式表( Cascading Style Sheets)，简称css 有时我们也会称之为CSS式表或级联样式表CSS是也是一种标记语言 CSS 主要用于设置HTML 页面中的文本内容(字体、大小、对齐方式等)图片的外形(宽高、边框样式边距等)以及版面的布局和外观显示样式 总结:html(结构)与css(样式)相分离(这个思想做项目会直接用到)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/backgroude/b47.jpg">
+<meta property="article:published_time" content="2023-02-10T02:27:51.000Z">
+<meta property="article:modified_time" content="2023-02-19T16:09:46.951Z">
+<meta property="article:author" content="矢幽武">
+<meta property="article:tag" content="html">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/backgroude/b47.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://example.com/2023/02/10/web-study-03/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端学习-css-01-基础概述',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-20 00:09:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/backgroude/b47.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="矢幽武博客"><span class="site-name">矢幽武博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前端学习-css-01-基础概述</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-10T02:27:51.000Z" title="发表于 2023-02-10 10:27:51">2023-02-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-19T16:09:46.951Z" title="更新于 2023-02-20 00:09:46">2023-02-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前端学习-css-01-基础概述"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="CSS-简介"><a href="#CSS-简介" class="headerlink" title="CSS 简介"></a>CSS 简介</h1><pre><code>CSS-层叠样式表( Cascading Style Sheets)，简称css
+有时我们也会称之为CSS式表或级联样式表CSS是也是一种标记语言
+CSS 主要用于设置HTML 页面中的文本内容(字体、大小、对齐方式等)图片的外形(宽高、边框样式边距等)以及版面的布局和外观显示样式
+总结:html(结构)与css(样式)相分离(这个思想做项目会直接用到)
+</code></pre>
+<span id="more"></span>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>选择器分为 <strong>基础选择器</strong> 和 <strong>复合选择器</strong> 两个大类</p>
+<h4 id="基础选择器"><a href="#基础选择器" class="headerlink" title="基础选择器"></a>基础选择器</h4><p>基础选择器是由单个选择器组成的</p>
+<p>基础选择器又包括: <strong>标签选择器 类选择器 id选择器 和 通配符选择器</strong></p>
+<ol>
+<li><p><strong>类选择器</strong></p>
+<p> (1) 被一个或者多个调用,开发常用</p>
+<p> (2) 命名要有意义,类名可以用’-‘,用英文为最佳</p>
+<p> (1) <strong>多类名</strong> :一个标签的调用多个类的方式</p>
+ <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;name1 name2&#x27;</span>&gt;</span> (name1为类名,加类时只要将类与类中间使 用空格隔开就行)</span><br><span class="line">==&gt; 可以使得标签产生 公共类 和 私有类</span><br><span class="line">==&gt; 公告类:公共属性</span><br><span class="line">==&gt; 私有类:自己特有的属性</span><br><span class="line"></span><br><span class="line">多类名可以使得一些类作为基础，另外一些类作为增加功能来引入。</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>标签选择器</strong></p>
+<p> ( 1 ) 只能调用一次,别人切勿使用(唯一性)</p>
+<p> ( 2 ) 样式 <strong>#</strong> 定义,结构 <strong>id</strong> 使用(#是放在style里面或者css文件里面的，id是放在标签里面的)</p>
+</li>
+<li><p><strong>通配符选择器</strong></p>
+<p> ( 1 ) 样式符号: *</p>
+<p> ( 2 ) 默认选择所有的样式</p>
+</li>
+</ol>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="字体属性"><a href="#字体属性" class="headerlink" title="字体属性"></a>字体属性</h3><table>
+<thead>
+<tr>
+<th>属性名:属性值</th>
+<th>简单说明</th>
+<th>详细说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>font-family:’微软雅黑’</td>
+<td>控制文字字体</td>
+<td>选择字体即可调用对应字体,多个字体就使用逗号分隔,英文兼容性好些</td>
+</tr>
+<tr>
+<td>font-size:20px;</td>
+<td>控制文字大小</td>
+<td>-</td>
+</tr>
+<tr>
+<td>font-weight: 500;</td>
+<td>控制文字粗细</td>
+<td>-</td>
+</tr>
+<tr>
+<td>font-style: normal/italic;</td>
+<td>字体标准/斜体样式</td>
+<td>常用:将em i 标签改为标准风格,很少改为斜体的.</td>
+</tr>
+<tr>
+<td><strong>font</strong> : <strong>font-style font-weight font-size/line-height font-family;</strong></td>
+<td>统一操作文字属性</td>
+<td>这是字体的复合属性,将多个属性糅合在一起</td>
+</tr>
+</tbody></table>
+<span style="color:red;font-weight:700" >
+==>注意!字体复合属性不能随意颠倒各值的顺序!
+</span>
+
+<h3 id="文本属性-外观样式"><a href="#文本属性-外观样式" class="headerlink" title="文本属性(外观样式)"></a>文本属性(外观样式)</h3><table>
+<thead>
+<tr>
+<th>属性名:属性值</th>
+<th>简单说明</th>
+<th>详细说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color:red ;</td>
+<td>文本颜色</td>
+<td>有预定义颜色:red,green,blue等;<br>十六进制颜色:#FFF,#000等;<br>RGB代码:rgb(0,0,0),rgb(255,255,255)等.</td>
+</tr>
+<tr>
+<td>text-align: center;</td>
+<td>文本对齐方式</td>
+<td>居中/向左/向右对齐<br>(center/left/right)</td>
+</tr>
+<tr>
+<td>text-decoration: none;(默认)</td>
+<td>文本修饰</td>
+<td>添加下划线(常用)/上划线/删除线等<br>underline/overline/line-through</td>
+</tr>
+<tr>
+<td>text-index: 10px;</td>
+<td>首行缩进</td>
+<td>每个段落的第一行进行缩进(也就是&lt;p&gt;)<br>或者使用em作为单位em为当前元素字体的单位,2em表示俩字体</td>
+</tr>
+<tr>
+<td>line-height:30px;</td>
+<td>控制行高</td>
+<td>行间距由上下间距和文本高度组成,也就是行高.</td>
+</tr>
+</tbody></table>
+<pre><code>==&gt;测量行高的办法:从多行文本的第一行文本最下底量到第二行文本的最下底.
+</code></pre>
+<h3 id="css的引入"><a href="#css的引入" class="headerlink" title="css的引入"></a>css的引入</h3><blockquote>
+<p>1)内部样式表 &gt;&gt; <code>&lt;style&gt;&lt;/style&gt;</code></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* 选择器 &#123;样式&#125; */</span></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* 某标签或者id/class &#123;属性:值;属性:值;&#125; */</span></span></span><br><span class="line"><span class="language-css">    <span class="comment">/* 选择器命名调用:</span></span></span><br><span class="line"><span class="comment"><span class="language-css">    1.标签名</span></span></span><br><span class="line"><span class="comment"><span class="language-css">    1.  .类选择器 </span></span></span><br><span class="line"><span class="comment"><span class="language-css">    2.  #id选择器</span></span></span><br><span class="line"><span class="comment"><span class="language-css">    </span></span></span><br><span class="line"><span class="comment"><span class="language-css">    举个例子</span></span></span><br><span class="line"><span class="comment"><span class="language-css">    */</span></span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2)行内样式表 &gt;&gt; <code>&lt;div style=&#39;color:red;&#39;&gt;</code><br>3)<span style="color:red;font-weight:700" >外部样式表</span> &gt;&gt; <code>&lt;line rel=&#39;stylesheet&#39; href=&#39;css文件路径&#39;&gt;</code>  &gt;&gt; 吐血推荐</p>
+</blockquote>
+<h3 id="emmet语法"><a href="#emmet语法" class="headerlink" title="emmet语法"></a>emmet语法</h3><blockquote>
+<ol>
+<li><p>概念:快速构建网页</p>
+<blockquote>
+<p>在VScode里面安装完成插件后，使用英文的“!”打在空白“.html”文件当中，就会出现快速生成html骨架的提示。</p>
+</blockquote>
+</li>
+<li><p>html其他生成功能概述:</p>
+<blockquote>
+<ol>
+<li><p>标签的快速生成，也就是说，输入标签名自动提示相关的标签</p>
+</li>
+<li><p>div*3  快速生成3个标签</p>
+</li>
+<li><p>ul&gt;li  快速创建父子集标签</p>
+</li>
+<li><p>div+p  快速生成兄弟集标签</p>
+</li>
+<li><p>.demo或者#laobel并按下tab  快速生成对应id/class标签</p>
+</li>
+<li><p>$ 自增符号,从1开始.</p>
+</li>
+<li><p>{} 给生成的标签内部写东西</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>属性与值的生成提示.</p>
+</li>
+<li><p>快速格式化代码:_<em>shift+alt+f</em></p>
+</li>
+</ol>
+</blockquote>
+<h1 id="复合选择器"><a href="#复合选择器" class="headerlink" title="复合选择器"></a>复合选择器</h1><blockquote>
+<p><strong>概述</strong> :<br>基本选择器的组合</p>
+<p>复合选择器可以更准确、更高效的选择目标元素(标签)</p>
+<p>复合选择器是由两个或多个基础选择器，通过不同的方式组合而成的</p>
+<p>常用的复合选择器包括: <strong>后代选择器、子选择器、并集选择器、伪类选择器等等</strong></p>
+<p><strong>复合选择器说明</strong></p>
+</blockquote>
+<h2 id="后代选择器-重要"><a href="#后代选择器-重要" class="headerlink" title="后代选择器(重要)"></a>后代选择器(重要)</h2><blockquote>
+<p>(1) <strong>概念</strong> ： 又称为包含选择器，可以选择 <strong>父元素里面子元素</strong> 。其写法就是把 <strong>外层标签</strong> 写在 <strong>前</strong> 面，<strong>内层标签写</strong> 在 <strong>后</strong> 面，中间用 <strong>空格</strong> 分隔。当标签发生嵌套时， <strong>内层标签</strong> 就成为 <strong>外层标签</strong> 的 <strong>后代</strong> 。</p>
+<p>(2) <strong>css写法</strong> : <code>元素1 元素2 &#123;属性:值;&#125;</code>   ==&gt; <strong>元素1</strong> 是 <strong>元素2</strong> 的 <strong>父标签/元素</strong> ,修改的是 <strong>元素2</strong> 的 <strong>属性</strong></p>
+<p>(3) <strong>实例</strong> : <code>ul li &#123;color:red;&#125;</code>  </p>
+<p>(4) <strong>影响</strong> ： 注意,这是选出所有标签为“li”的子元素!包括子子子选择器!</p>
+</blockquote>
+<h2 id="子选择器-亲儿子选择器"><a href="#子选择器-亲儿子选择器" class="headerlink" title="子选择器(亲儿子选择器)"></a>子选择器(亲儿子选择器)</h2><blockquote>
+<p>(1) <strong>概念</strong> ：最近一级子元素,也就是亲儿子</p>
+<p>(2) <strong>css写法</strong> : <code>ul&gt;a &#123;color:red;&#125;</code>  </p>
+<p>(3) <strong>影响</strong> ：变更只变更到子一级过,子子级或者其他级无法受到影响</p>
+</blockquote>
+<h2 id="并集选择器-重要"><a href="#并集选择器-重要" class="headerlink" title="并集选择器(重要)"></a>并集选择器(重要)</h2><blockquote>
+<p>(1) <strong>概念</strong> ：多组标签相同样式,任何形式都可以,以’,’连接.   一般是竖着写的.</p>
+<p>(2) <strong>css写法</strong> : <code>#d1,#d2, ul li &#123;color:red;&#125;</code></p>
+</blockquote>
+<h2 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h2><blockquote>
+<p>(1) <strong>伪类选择器</strong></p>
+<blockquote>
+<p>伪类选择器用于向某些选择器添加特殊的效果，比如 __给链接添加特殊效果__，或 <strong>选择</strong> 第1个，第n个 <strong>元素</strong> .</p>
+</blockquote>
+<blockquote>
+<p>伪类选择器书写最大的特点是用冒号(<strong>:</strong>)表示，比如:hover 、 :first-child。</p>
+</blockquote>
+<blockquote>
+<p>因为伪类选择器很多，比如有 <strong>链接伪类__、__结构伪类</strong> 等，所以这里先给大家讲解常用的链接伪类选择器</p>
+</blockquote>
+<p>(2) <strong>各类伪类</strong></p>
+<p>&lt;1&gt; 链接伪类(声明顺序&gt;lvha):(样式需要单独指定)</p>
+</blockquote>
+<pre><code> a:link      选择所有未被访问的链接
+ a:visited   选择所有已被访问的链接
+ a:hover     选择鼠标指针位于其上的链接(鼠标经过)  (&lt;常用&gt;)
+ a:active    选择活动链接(鼠标按下未弹起)(鼠标点击不松动)
+</code></pre>
+<blockquote>
+<p>&lt;2&gt; focus伪类选择器</p>
+<ol>
+<li>概念: 用于选取获得焦点光标的表单元素(获得光标,一般为input)</li>
+<li>格式: 下面是表单被选中时临时更换颜色</li>
+</ol>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">input:focus &#123;</span><br><span class="line">    background-color:yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="元素的显示模式"><a href="#元素的显示模式" class="headerlink" title="元素的显示模式"></a>元素的显示模式</h1><blockquote>
+<p><strong>什么是元素显示模式</strong></p>
+<p><strong>作用</strong> :网页的标签非常多，在不同地方会用到不同类型的标签，了解他们的特点可以更好的布局我们的网页</p>
+<p><strong>元素显示模式</strong> :元素(标签)以 <strong>什么方式</strong> 进行 <strong>显示</strong> ，比如<code>&lt;div&gt;</code>自己占一行，比如一行可以放多个<code>&lt;span&gt;</code>.</p>
+<p>HTML元素一般分为  <strong>块元素</strong> 和 <strong>行内元素</strong> 两种类型</p>
+</blockquote>
+<h1 id="块元素与行内元素"><a href="#块元素与行内元素" class="headerlink" title="块元素与行内元素"></a>块元素与行内元素</h1><h2 id="块元素"><a href="#块元素" class="headerlink" title="块元素"></a>块元素</h2><p>常见的块元素有<code>&lt;h1&gt;~&lt;h6&gt;、&lt;p&gt;、&lt;div&gt;、&lt;ul&gt;、&lt;ol&gt;、&lt;li&gt;</code>等，其中<code>&lt;div&gt;</code>标签是最典型的块元素</p>
+<blockquote>
+<p>块级元素的特点</p>
+<p>(1) 比较霸道，自己独占一行。</p>
+<p>(2) 高度，宽度、外边距以及内边距都可以控制</p>
+<p>(3) 宽度默认是容器(父级宽度)的100%。</p>
+<p>(4) 是一个容器及盒子，里面可以放行内或者块级元素</p>
+</blockquote>
+<p><strong>注意</strong></p>
+<blockquote>
+<p>文字类的元素内不能使用块级元素</p>
+<p>标签<code>&lt;p&gt;</code>主要用于存放文字</p>
+<p>此<code>&lt;p&gt;</code>里面不能放块级元素，特别是不能放<code>&lt;div&gt;</code></p>
+<p>同理，<code>&lt;h1&gt;~&lt;h6&gt;</code>等都是文字类块级标签，里面也不能放其他块级元素</p>
+</blockquote>
+<h2 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h2><p>常见的行内元素有<code>&lt;a&gt;、&lt;strong&gt;、&lt;b&gt;、&lt;em&gt;、&lt;i&gt;、&lt;del&gt;&lt;s&gt;、&lt;ins&gt;、&lt;u&gt;、&lt;span&gt;</code>等，其中<code>&lt;span&gt;</code>标签是最典型的行内元素。有的地方也将行内元素称为内联元素.</p>
+<p><strong>行内元素的特点</strong> :</p>
+<blockquote>
+<p>相邻行内元素在一行上，一行可以显示多个</p>
+<p>高、宽直接设置是无效的</p>
+<p>默认宽度就是它本身内容的宽度</p>
+<p>行内元素只能容纳文本或其他行内元素</p>
+</blockquote>
+<p><strong>注意</strong></p>
+<blockquote>
+<p>链接里面不能再放链接</p>
+<p>特殊情况链接<code>&lt;a&gt;</code>里面可以放块级元素，但是给<code>&lt;a&gt;</code>转换一下块级模式最安全 <code>(display:block)</code></p>
+</blockquote>
+<h2 id="行内块元素"><a href="#行内块元素" class="headerlink" title="行内块元素"></a>行内块元素</h2><blockquote>
+<p>在行内元素中有几个特殊的标签它们同时具有块元素和行内元素的特点。<code>&lt;img/&gt; &lt;input/&gt; &lt;td&gt;.</code><br>有些资料称它们为行内块元素。</p>
+</blockquote>
+<p><strong>行内块元素的特点</strong></p>
+<blockquote>
+<p>和相邻行内元素(行内块)在一行，但是他们之间会有空白间隙。一行可以显示多个(行内元素特点)。</p>
+<p>默认宽度就是它本身内容的宽度(行内元素特点)</p>
+<p>高度，行高、外边距以及内边距都可以控制( 块级元素特点)。</p>
+</blockquote>
+<h2 id="元素显示模式转换-display"><a href="#元素显示模式转换-display" class="headerlink" title="元素显示模式转换(display)"></a>元素显示模式转换(display)</h2><blockquote>
+<p>转换为 <strong>行内</strong> 元素: <strong>display: inline</strong> ;</p>
+<p>转换为 <strong>块</strong> 元素: <strong>display: block</strong> ;</p>
+<p>转换为 <strong>行内块</strong> 元素: <strong>display: inline-block</strong> ;</p>
+</blockquote>
+<h1 id="css背景样式"><a href="#css背景样式" class="headerlink" title="css背景样式"></a>css背景样式</h1><h2 id="背景样式汇总（所学的）"><a href="#背景样式汇总（所学的）" class="headerlink" title="背景样式汇总（所学的）"></a>背景样式汇总（所学的）</h2><table>
+<thead>
+<tr>
+<th>属性名:属性值</th>
+<th>简单说明</th>
+<th>详细说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>background-color: red</td>
+<td>背景色</td>
+<td>transparent<br>(默认透明色)<br>特定色(red,blue…)<br> rgb(0,0,0) <br>16进制色#000</td>
+</tr>
+<tr>
+<td>bacground-img: none</td>
+<td>背景图片</td>
+<td>none或url(图片地址);<br>常常作为小图片控件</td>
+</tr>
+<tr>
+<td>background-repeat : repeat</td>
+<td>背景平铺</td>
+<td>repeat(平铺) no-repeat(不平铺) )<br>repeat-x(仅沿x轴平铺 ) repeat-y(仅沿y轴平铺)<br></td>
+</tr>
+<tr>
+<td>background-position: x y;</td>
+<td>背景图片位置</td>
+<td>x y 可以为长度单位(px等)<br>也可以为方位名词)<br>(left right bottom center))<br>单个方位名词时默认其他方位居中)<br>精确坐标第一个一定是x)<br>精确单位与单位名词可以混合使用</td>
+</tr>
+<tr>
+<td>background-attachment: fixed;</td>
+<td>背景图像固定</td>
+<td>scroll(滚动),fixed(固定)</td>
+</tr>
+<tr>
+<td>background-color: rgba(0,0,0,0.3)</td>
+<td>半透明效果背景色</td>
+<td>通过控制rgb后面的小数设置透明度,取值范围0~1</td>
+</tr>
+</tbody></table>
+<h2 id="复合背景样式"><a href="#复合背景样式" class="headerlink" title="复合背景样式"></a>复合背景样式</h2><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">background</span>: 背景色 背景图地址 背景平铺 背景滚动/固定 背景图位置;</span><br></pre></td></tr></table></figure>
+<span style="color:red;font-weight:700" >
+注意！这个复合样式可以随意调换位置！
+</span>
+
+<h1 id="CSS三大特性-重要★☾★☽★"><a href="#CSS三大特性-重要★☾★☽★" class="headerlink" title="CSS三大特性(重要★☾★☽★)"></a>CSS三大特性(重要★☾★☽★)</h1><h2 id="层叠性-覆盖"><a href="#层叠性-覆盖" class="headerlink" title="层叠性(覆盖)"></a>层叠性(覆盖)</h2><p><strong>概念</strong> </p>
+<pre><code>样式冲突   就近原则,哪个距离被修饰的结构近就用哪个修饰
+样式不冲突 不会层叠
+</code></pre>
+<h2 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h2><p><strong>概念</strong></p>
+<pre><code>继承父元素样式   子承父业
+</code></pre>
+<p><strong>特殊情况:行高继承性</strong> </p>
+<p>属性<code>font-size: 14px/1.5;</code> → 意思是当前元素字体大小的1.5倍大的行高.</p>
+<p>(也就是说,继承过来的行高取决于字体大小和倍数的乘积…)</p>
+<h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><p><strong>概念</strong><br>选择器权重</p>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>选择器权重</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>继承或者 *</td>
+<td>0,0,0,0</td>
+</tr>
+<tr>
+<td>元素选择器</td>
+<td>0,0,0,1</td>
+</tr>
+<tr>
+<td>类选择器伪类选择器</td>
+<td>0,0,1,0</td>
+</tr>
+<tr>
+<td>ID选择器</td>
+<td>0,1,0,0</td>
+</tr>
+<tr>
+<td>行内样式 <code>style=&quot;&quot;</code>(例如<code>&lt;div style=&quot;&quot; &gt;</code>)</td>
+<td>1,0,0,0</td>
+</tr>
+<tr>
+<td>!important 重要的</td>
+<td>无穷大</td>
+</tr>
+</tbody></table>
+<p><strong>权重注意点</strong> :</p>
+<p>权重的大小是不变的,权重的比较类似于二进制.</p>
+<p><strong>优先级注意点</strong> :</p>
+<blockquote>
+<p>1.权重是有4组数字组成但是 <strong>不会有进位!</strong></p>
+<p>2.可以理解为 <strong>类选择器</strong> 永远大于 <strong>元素选择器</strong> , <strong>id选择器</strong> 永远大于 <strong>类选择器</strong>,以此类推</p>
+<p>3.等级判断 <strong>从左向右</strong> ，如果某一位 <strong>数值相同</strong> ，则 <strong>判断下一位</strong> 数值</p>
+<p>4.可以简单记忆法: 通配符和继承 <strong>权重为0</strong> ,标签选择器为1,类(伪类)选择器为10,id选择器100,行内样式表为1000,!important无穷大</p>
+<p>5.<strong>继承的权重是0</strong> ,如果该元素没有直接选中，不管父元素权重多高，子元素得到的权重都是0。<br>==&gt;也就是说,从父亲继承的权重是0,单独列出子元素指定属性时,会覆盖继承的权重</p>
+</blockquote>
+<h3 id="权重叠加"><a href="#权重叠加" class="headerlink" title="权重叠加"></a>权重叠加</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">复合选择器权重叠加问题</span><br><span class="line">ul li &#123;...&#125; </span><br><span class="line">li &#123;&#125;  ==&gt;两者同时操作li标签,但由于权重叠加,必须计算: </span><br><span class="line">ul li 的权重:0,0,0,1 + 0,0,0,1 = 0,0,0,2</span><br><span class="line">li1的权重: 0,0,0,1  ==&gt;小于ul li的权重,所以继承ul li的属性  </span><br></pre></td></tr></table></figure>
+
+<h1 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h1><h2 id="网页布局3大核心"><a href="#网页布局3大核心" class="headerlink" title="网页布局3大核心"></a>网页布局3大核心</h2><pre><code>盒子模型/浮动/定位
+</code></pre>
+<h2 id="看透网页布局的本质"><a href="#看透网页布局的本质" class="headerlink" title="看透网页布局的本质"></a>看透网页布局的本质</h2><pre><code>网页布局过程
+1.先准备好相关的网页元素，网页元素基本都是盒子Box
+2.利用CSS设置好盒子样式，然后摆放到相应位置
+3.往盒子里面装内容
+</code></pre>
+<span style="color:red;font-weight:700" >
+网页布局的核心本质: 利用CSS摆盒子.
+</span>
+
+<p><strong>盒子模型概念</strong> :就是把HTML页面中的布局元素看作是一个 <strong>矩形的盒子</strong> ，也就是一个盛装内容的 <strong>容器</strong></p>
+<p><strong>CSS盒子模型</strong> 本质上是一个盒子，封装周围的HTML元素，它包括: <strong>边框(border)</strong> 、<strong>外边距(margin)</strong> 、<strong>内边距(padding)</strong> 和 <strong>实际内容(content)</strong></p>
+<h2 id="border边框样式表"><a href="#border边框样式表" class="headerlink" title="border边框样式表"></a>border边框样式表</h2><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>具体样式</th>
+<th>相关说明</th>
+<th>属性值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>border</td>
+<td>border-width</td>
+<td>边框的粗细</td>
+<td>单位可以是px等</td>
+</tr>
+<tr>
+<td>border</td>
+<td>border-color</td>
+<td>边框的颜色</td>
+<td>颜色值可以是red，rgb或者#</td>
+</tr>
+<tr>
+<td>border</td>
+<td>border-style</td>
+<td>边框的样式</td>
+<td>none(无边框) hidden(隐藏边框) dottend(点线 )<br> dashed(虚线) solid(实线) double(双线) <br>groove(3D凹槽) ridge(棱形)  inset(3d凹边)<br>  outset(3d凸边)<br> <strong>注意</strong> :测量时边框会影响盒子的大小</td>
+</tr>
+<tr>
+<td>border</td>
+<td><br>border-left<br>border-right<br>border-top<br>border-bottom</td>
+<td>具体位置上的边框</td>
+<td>样式为复合样式，囊括前面三种。</td>
+</tr>
+</tbody></table>
+<h2 id="margin外边距控制"><a href="#margin外边距控制" class="headerlink" title="margin外边距控制"></a>margin外边距控制</h2><blockquote>
+<ol>
+<li><strong>css格式</strong> : <code>margin: top right bottom left</code>这个是复合写法,可以写成<code>margin-top:12px;</code>的格式;</li>
+<li><strong>影响</strong> :盒子与盒子间的距离</li>
+<li><strong>另外一种用途</strong> :设置水平居中 &gt;&gt;&gt; <code>margin:auto;</code>  &gt;&gt;&gt; 前提:盒子有宽度</li>
+<li><strong>外边距塌陷问题</strong> :</li>
+</ol>
+</blockquote>
+<pre><code>当父元素与子元素(嵌套)同时设置外边距时,父元素会塌陷较大外边距的值
+解决办法:(可以定义透明边框)
+    ① 给父元素定义上边框
+    ② 给父元素定义上内边距
+    ③ 给父元素添加overflow:hidden  ★★★★★★
+</code></pre>
+<h2 id="padding内边距控制"><a href="#padding内边距控制" class="headerlink" title="padding内边距控制"></a>padding内边距控制</h2><blockquote>
+<ol>
+<li><strong>css格式</strong>:   <code>padding: top right bottom left</code> 和margin一样，这是复合写法，也可以写成<code>padding-top:12px;</code>的格式</li>
+<li><strong>影响盒子实际大小</strong> ==&gt; 盒子宽高减去内边距</li>
+<li><strong>其他情况</strong> : 盒子没有指定宽高 &gt;&gt; 不会撑开盒子</li>
+</ol>
+</blockquote>
+<h2 id="content"><a href="#content" class="headerlink" title="content"></a>content</h2><p><strong>注意</strong> :行内元素为了照顾兼容性，尽量只设置 <strong>左右内外边距</strong> ，<strong>不要</strong> 设置 <strong>上下内外边距</strong> 。但是转换为块级和行内块元素就可以了.</p>
+<blockquote>
+<p>Pink老师总结</p>
+<p>1.布局为啥用不同盒子,我只想用div ?</p>
+<blockquote>
+<p>标签都是有语义的,合理的地方用合理的标签。比如产品标题就用h，大量文字段落就用p <strong>(个人：后面做项目时布局确实如此，有语意的标签读起来更好理解)</strong></p>
+</blockquote>
+<p>2.为啥用辣么多类名 ?</p>
+<blockquote>
+<p>类名就是给每个盒子起了一个名字,可以更好的找到这个盒子选取盒子更容易 <strong>后期维护也方便</strong></p>
+</blockquote>
+<p>3.到底用 margin还是 padding ?</p>
+<blockquote>
+<p>大部分情况两个可以混用，两者各有优缺点，但是根据实际情况，总是有更简单的方法实现</p>
+</blockquote>
+</blockquote>
+<h2 id="css3后增样式"><a href="#css3后增样式" class="headerlink" title="css3后增样式"></a>css3后增样式</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>名称</th>
+<th>用途</th>
+<th>相关说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>border-radiues:length</td>
+<td>圆角边框</td>
+<td>可以做圆形</td>
+<td>半径为length的圆与边框的交集<br>角顺序:   左上  右上 右下 左下<br> <strong>length</strong> 的单位不限,可以用百分比<br></td>
+</tr>
+<tr>
+<td>box-shadow:h-shadow v-shadow blur spread color inset;</td>
+<td>盒子阴影</td>
+<td>-</td>
+<td>水平位置(必须)  垂直位置(必须)  模糊距离 阴影尺寸 阴影颜色 外部阴影转内部(默认outset,此单词不可写)</td>
+</tr>
+<tr>
+<td>text-shadow:h-shadow v-shadow blur color;</td>
+<td>文字阴影</td>
+<td>-</td>
+<td>水平位置(必须)  垂直位置(必须)  模糊距离 阴影颜色</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">矢幽武</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/02/10/web-study-03/">http://example.com/2023/02/10/web-study-03/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">矢幽武博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/html/">html</a><a class="post-meta__tags" href="/tags/css/">css</a></div><div class="post_share"><div class="social-share" data-image="/img/backgroude/b47.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/10/web-study-04/" title="前端学习-css-02-高级"><img class="cover" src="/img/backgroude/b34.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">前端学习-css-02-高级</div></div></a></div><div class="next-post pull-right"><a href="/2023/02/10/web-study-02/" title="前端学习-html-02-表格标签+列表标签+表单标签"><img class="cover" src="/img/backgroude/b10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">前端学习-html-02-表格标签+列表标签+表单标签</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/10/web-study-05/" title="前端学习-css-03-高级"><img class="cover" src="/img/backgroude/b20.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-10</div><div class="title">前端学习-css-03-高级</div></div></a></div><div><a href="/2023/02/10/web-study-04/" title="前端学习-css-02-高级"><img class="cover" src="/img/backgroude/b34.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-10</div><div class="title">前端学习-css-02-高级</div></div></a></div><div><a href="/2023/02/10/web-study-02/" title="前端学习-html-02-表格标签+列表标签+表单标签"><img class="cover" src="/img/backgroude/b10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-10</div><div class="title">前端学习-html-02-表格标签+列表标签+表单标签</div></div></a></div><div><a href="/2023/02/10/web-study-01/" title="前端学习-html-01-网页+标签简介"><img class="cover" src="/img/backgroude/b1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-10</div><div class="title">前端学习-html-01-网页+标签简介</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">矢幽武</div><div class="author-info__description">生灵造物，百力奋心<br>机遇自争，各凭本事<br>没有攻不破的系统 ，<br> 只有不努力的黑客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/linxiao-wangchuan"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><b><font color="#e66b6d">威</font> <font color="#e66d98">武</font> <font color="#e66cc6">不</font> <font color="#cc6de6">屈</font> ,<font color="#9770e6">成</font> <font color="#6d93e6">为</font> <font color="#6fcde6">自</font> <font color="#72e6b6">己</font> <font color="#72e689">不败的</font> <font color="#99e670">信条</font>, <font color="#cde670">剑</font> <font color="#e6df72">走</font> <font color="#e6c073">偏</font> <font color="#e6a271">锋</font> ,<font color="#e6796f">缥</font> <font color="#e65454">缈</font> <font color="#e63333">孤</font> <font color="#e62c2c">鸿</font> <font color="#e60101">影</font> <font color="#e60101"> --孤志</font></b> <p align="center"><img src="https://haiyong.site/img/img-blog.csdnimg.cn/f7384c88956d4378b72e47548e19c9f8.gif" width="50" alt="mao"></p> <p align="center" style="color:yellow;font-weight:800">微信号：无</p> <p align="center" style="color:red;font-weight:800">QQ：无</p> -------------------------------- <p style="color:#5a1216;font-weight:800">每日更新指南：</p> <p style="color:#4d1018;font-weight:800">刷题/记录总知识一般会沿用上次的文档</p> <p style="color:#f03752;font-weight:800">学习新知将新开文档</p></div></div><div class="xpand" style="height:10px;"></div><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">CSS 简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.1.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">基础选择器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.1.</span> <span class="toc-text">字体属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7-%E5%A4%96%E8%A7%82%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">文本属性(外观样式)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css%E7%9A%84%E5%BC%95%E5%85%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">css的引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emmet%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">emmet语法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">复合选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E4%BB%A3%E9%80%89%E6%8B%A9%E5%99%A8-%E9%87%8D%E8%A6%81"><span class="toc-number">2.1.</span> <span class="toc-text">后代选择器(重要)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E9%80%89%E6%8B%A9%E5%99%A8-%E4%BA%B2%E5%84%BF%E5%AD%90%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">2.2.</span> <span class="toc-text">子选择器(亲儿子选择器)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E9%9B%86%E9%80%89%E6%8B%A9%E5%99%A8-%E9%87%8D%E8%A6%81"><span class="toc-number">2.3.</span> <span class="toc-text">并集选择器(重要)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">2.4.</span> <span class="toc-text">伪类选择器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E7%9A%84%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">元素的显示模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9D%97%E5%85%83%E7%B4%A0%E4%B8%8E%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0"><span class="toc-number">4.</span> <span class="toc-text">块元素与行内元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%97%E5%85%83%E7%B4%A0"><span class="toc-number">4.1.</span> <span class="toc-text">块元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0"><span class="toc-number">4.2.</span> <span class="toc-text">行内元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%9D%97%E5%85%83%E7%B4%A0"><span class="toc-number">4.3.</span> <span class="toc-text">行内块元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E8%BD%AC%E6%8D%A2-display"><span class="toc-number">4.4.</span> <span class="toc-text">元素显示模式转换(display)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css%E8%83%8C%E6%99%AF%E6%A0%B7%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">css背景样式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E6%A0%B7%E5%BC%8F%E6%B1%87%E6%80%BB%EF%BC%88%E6%89%80%E5%AD%A6%E7%9A%84%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">背景样式汇总（所学的）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E8%83%8C%E6%99%AF%E6%A0%B7%E5%BC%8F"><span class="toc-number">5.2.</span> <span class="toc-text">复合背景样式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7-%E9%87%8D%E8%A6%81%E2%98%85%E2%98%BE%E2%98%85%E2%98%BD%E2%98%85"><span class="toc-number">6.</span> <span class="toc-text">CSS三大特性(重要★☾★☽★)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E5%8F%A0%E6%80%A7-%E8%A6%86%E7%9B%96"><span class="toc-number">6.1.</span> <span class="toc-text">层叠性(覆盖)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E6%80%A7"><span class="toc-number">6.2.</span> <span class="toc-text">继承性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">6.3.</span> <span class="toc-text">优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%83%E9%87%8D%E5%8F%A0%E5%8A%A0"><span class="toc-number">6.3.1.</span> <span class="toc-text">权重叠加</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">7.</span> <span class="toc-text">盒子模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E5%B8%83%E5%B1%803%E5%A4%A7%E6%A0%B8%E5%BF%83"><span class="toc-number">7.1.</span> <span class="toc-text">网页布局3大核心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%8B%E9%80%8F%E7%BD%91%E9%A1%B5%E5%B8%83%E5%B1%80%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">7.2.</span> <span class="toc-text">看透网页布局的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#border%E8%BE%B9%E6%A1%86%E6%A0%B7%E5%BC%8F%E8%A1%A8"><span class="toc-number">7.3.</span> <span class="toc-text">border边框样式表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#margin%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8E%A7%E5%88%B6"><span class="toc-number">7.4.</span> <span class="toc-text">margin外边距控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#padding%E5%86%85%E8%BE%B9%E8%B7%9D%E6%8E%A7%E5%88%B6"><span class="toc-number">7.5.</span> <span class="toc-text">padding内边距控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#content"><span class="toc-number">7.6.</span> <span class="toc-text">content</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css3%E5%90%8E%E5%A2%9E%E6%A0%B7%E5%BC%8F"><span class="toc-number">7.7.</span> <span class="toc-text">css3后增样式</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具"><img src="/img/backgroude/b14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SEC-工具-认识kali部分工具"/></a><div class="content"><a class="title" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具">SEC-工具-认识kali部分工具</a><time datetime="2024-01-06T02:12:32.000Z" title="发表于 2024-01-06 10:12:32">2024-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置"><img src="/img/backgroude/b41.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kali虚拟机网卡配置"/></a><div class="content"><a class="title" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置">kali虚拟机网卡配置</a><time datetime="2024-01-05T06:15:45.000Z" title="发表于 2024-01-05 14:15:45">2024-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试"><img src="/img/backgroude/b19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试学习-渗透测试"/></a><div class="content"><a class="title" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试">面试学习-渗透测试</a><time datetime="2023-12-19T06:27:03.000Z" title="发表于 2023-12-19 14:27:03">2023-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题"><img src="/img/backgroude/b11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web习题--033--某赛题"/></a><div class="content"><a class="title" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题">CTF之Web习题--033--某赛题</a><time datetime="2023-11-29T00:19:08.000Z" title="发表于 2023-11-29 08:19:08">2023-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境"><img src="/img/backgroude/b43.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web总结--协议/系统/环境"/></a><div class="content"><a class="title" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境">CTF之Web总结--协议/系统/环境</a><time datetime="2023-10-13T14:19:08.000Z" title="发表于 2023-10-13 22:19:08">2023-10-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 矢幽武</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, {"emotion":"twemoji","placeholder":"在此处输入评论"}))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || ![object Object]) {
+    if ([object Object]) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="/js/sun_moon.js" async></script><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = '/2022/,/2023/,/2024/'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'eb7ef47cda914d65b0b394ce50c15242';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'true';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>SEC学习-0003-基础 | 矢幽武博客</title><meta name="author" content="矢幽武"><meta name="copyright" content="矢幽武"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="脚本语言,后门,WEB安全漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SEC学习-0003-基础">
+<meta property="og:url" content="http://example.com/2023/03/08/SEC-Study-0003/index.html">
+<meta property="og:site_name" content="矢幽武博客">
+<meta property="og:description" content="脚本语言,后门,WEB安全漏洞">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/backgroude/b11.jpg">
+<meta property="article:published_time" content="2023-03-07T17:13:41.000Z">
+<meta property="article:modified_time" content="2023-03-09T12:17:42.943Z">
+<meta property="article:author" content="矢幽武">
+<meta property="article:tag" content="SEC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/backgroude/b11.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://example.com/2023/03/08/SEC-Study-0003/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SEC学习-0003-基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-09 20:17:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/backgroude/b11.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="矢幽武博客"><span class="site-name">矢幽武博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SEC学习-0003-基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-07T17:13:41.000Z" title="发表于 2023-03-08 01:13:41">2023-03-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-09T12:17:42.943Z" title="更新于 2023-03-09 20:17:42">2023-03-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SEC学习-0003-基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>脚本语言,后门,WEB安全漏洞</p>
+<span id="more"></span>
+<h1 id="脚本语言"><a href="#脚本语言" class="headerlink" title="脚本语言"></a>脚本语言</h1><h2 id="常见脚本语言概述"><a href="#常见脚本语言概述" class="headerlink" title="常见脚本语言概述"></a>常见脚本语言概述</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">常见的脚本语言有：</span><br><span class="line"></span><br><span class="line">PHP:        通用的服务器端脚本语言，可以嵌入HTML中使用，也可以用来开发独立的命令行应用程序。</span><br><span class="line">Python：    一种高级编程语言，具有简洁明了的语法和强大的库支持。</span><br><span class="line">JavaScript：一种用于网页开发的脚本语言，可用于开发交互式网页和跨平台应用程序。</span><br><span class="line">Ruby：      一种简单的面向对象编程语言，强调可读性和简洁性。</span><br><span class="line">Perl：      一种灵活、可扩展的编程语言，被广泛用于文本处理和系统管理。</span><br><span class="line">Bash：      一种运行在Unix和Linux操作系统上的脚本语言，用于编写各种脚本和系统管理任务。</span><br><span class="line">Lua：       一种轻量级、高效的嵌入式脚本语言，被广泛用于游戏开发和嵌入式系统。</span><br><span class="line">JSP:        （JavaServer Pages）一种基于Java技术的服务器端脚本语言，它可以用于创建动态Web页面。它的本质是一个Servlet，通过Java代码来生成HTML代码。</span><br><span class="line"></span><br><span class="line">ASPX:       （Active Server Pages Extended）是Microsoft ASP.NET技术中的一种Web页面技术</span><br><span class="line">            它使用C#或VB.NET等编程语言编写，可以被视为服务器端脚本语言。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">不是脚本语言：</span><br><span class="line">JavaWeb:    ，它是一种使用Java语言编写的Web应用程序开发框架。</span><br><span class="line">            JavaWeb开发通常需要使用Java语言以及其他相关的技术和工具，如Servlet、JSP、JDBC、Spring、Hibernate等。</span><br><span class="line">            与脚本语言不同，JavaWeb需要在编译后生成Java字节码文件，然后在Web服务器上运行。</span><br><span class="line"></span><br><span class="line">CGI:        （通用网关接口）是一种标准的协议，用于在Web服务器和客户端之间传输数据。</span><br><span class="line">            它定义了Web服务器如何向Web应用程序（通常是脚本语言编写的）发送数据，并接收应用程序处理后返回的数据。</span><br><span class="line">            常见的脚本语言如Perl、Python、Ruby等都可以通过CGI协议与Web服务器进行交互。</span><br></pre></td></tr></table></figure>
+
+<h2 id="脚本语言对应的框架-概述"><a href="#脚本语言对应的框架-概述" class="headerlink" title="脚本语言对应的框架(概述)"></a>脚本语言对应的框架(概述)</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Python:     Django,Flask,Tornado,Pyramid,Bottle,TurboGears等</span><br><span class="line">Ruby:       Ruby on Rails,Sinatra,Hanami等</span><br><span class="line">JavaScript: Node.js,Express.js,Meteor.js,Sails.js,React, Angular, Vue.js等</span><br><span class="line">PHP:        Laravel,Symfony,CodeIgniter,Yii,CakePHP,Zend Framework等</span><br><span class="line">Perl:       Catalyst,Dancer2,Mojolicious等</span><br><span class="line">Lua:        OpenResty, Lapis, Sailor</span><br><span class="line">Bash:       ShellCheck, Bash Infinity</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="脚本语言与安全漏洞的关系"><a href="#脚本语言与安全漏洞的关系" class="headerlink" title="脚本语言与安全漏洞的关系"></a>脚本语言与安全漏洞的关系</h2><blockquote>
+<p>(1)程序源代码编程语言的选取决定漏洞的类型、概率<br>(2)程序源码偏重不同：php适合小众开发，java适合大型开发</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JavaScript：    JavaScript是前端开发的主要语言，但也经常被攻击者用来实施恶意攻击，例如跨站脚本攻击（XSS）。</span><br><span class="line">                攻击者利用JavaScript代码注入到网页中，从而在受害者的浏览器上执行恶意代码，</span><br><span class="line">                例如窃取用户的cookie、密码等敏感信息。</span><br><span class="line"></span><br><span class="line">PHP：           PHP是一种常见的服务器端语言，但也容易受到SQL注入、文件包含、代码执行等漏洞的攻击。</span><br><span class="line">                攻击者利用这些漏洞，可以在服务器上执行恶意代码、窃取敏感信息等。</span><br><span class="line"></span><br><span class="line">Python：        Python是一种广泛使用的脚本语言，但也存在一些安全漏洞，例如XML外部实体注入（XXE）、命令注入、代码注入等。</span><br><span class="line">                攻击者利用这些漏洞，可以在服务器上执行恶意代码、窃取敏感信息等。</span><br><span class="line"></span><br><span class="line">Ruby：          Ruby是一种面向对象的脚本语言，但也存在一些安全漏洞，例如跨站脚本攻击、SQL注入、文件包含等。</span><br><span class="line">                攻击者利用这些漏洞，可以在服务器上执行恶意代码、窃取敏感信息等。</span><br><span class="line"></span><br><span class="line">Perl：          Perl是一种通用的脚本语言，但也存在一些安全漏洞，例如跨站脚本攻击、代码注入、文件包含等。</span><br><span class="line">                攻击者可以利用这些漏洞，来执行恶意代码或者窃取敏感信息。</span><br><span class="line"></span><br><span class="line">Bash：          Bash是一个常用的Unix shell，但也存在一些安全漏洞，例如代码注入、文件包含、命令注入等。</span><br><span class="line">                攻击者可以利用这些漏洞，在系统上执行恶意代码或者窃取敏感信息。</span><br><span class="line"></span><br><span class="line">Lua：           Lua是一种轻量级的脚本语言，但也存在一些安全漏洞，例如代码注入、远程代码执行等。</span><br><span class="line">                攻击者可以利用这些漏洞，在服务器上执行恶意代码或者窃取敏感信息。</span><br><span class="line"></span><br><span class="line">PowerShell：    PowerShell是一种命令行脚本语言，但也存在一些安全漏洞，例如代码注入、命令注入、XML注入等。</span><br><span class="line">                攻击者可以利用这些漏洞，在系统上执行恶意代码或者窃取敏感信息。</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞挖掘代码审计与脚本类型的关系"><a href="#漏洞挖掘代码审计与脚本类型的关系" class="headerlink" title="漏洞挖掘代码审计与脚本类型的关系"></a>漏洞挖掘代码审计与脚本类型的关系</h2><blockquote>
+<p>(1)和对应的编程语言代码都有关系<br>(2)对这类语言代码函数等的应用都有关系</p>
+</blockquote>
+<h3 id="常见的脚本类型及其相关的漏洞类型"><a href="#常见的脚本类型及其相关的漏洞类型" class="headerlink" title="常见的脚本类型及其相关的漏洞类型"></a>常见的脚本类型及其相关的漏洞类型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PHP：PHP是一种常用的Web开发语言，常见的漏洞类型包括SQL注入、XSS攻击、文件包含漏洞、代码执行漏洞等。</span><br><span class="line">Python：Python是一种通用编程语言，常用于Web开发、数据分析等领域，常见的漏洞类型包括代码注入、路径遍历漏洞、命令执行漏洞等。</span><br><span class="line">JavaScript：JavaScript是一种常用的客户端脚本语言，常见的漏洞类型包括DOM-based XSS攻击、反射型XSS攻击、基于事件的漏洞等。</span><br><span class="line">Ruby：Ruby是一种动态编程语言，常用于Web开发和系统管理，常见的漏洞类型包括SQL注入、XSS攻击、代码执行漏洞等。</span><br><span class="line">Lua：Lua是一种轻量级的脚本语言，常用于游戏开发、嵌入式系统等领域，常见的漏洞类型包括代码注入、格式化字符串漏洞等。</span><br><span class="line">Perl：Perl是一种通用的脚本语言，常用于Web开发、系统管理等领域，常见的漏洞类型包括命令注入漏洞、文件包含漏洞、代码执行漏洞等。</span><br><span class="line">Bash：Bash是一种Unix/Linux系统下的脚本语言，常用于系统管理和自动化任务，常见的漏洞类型包括命令注入漏洞、环境变量注入漏洞等。</span><br><span class="line">PowerShell：PowerShell是微软公司开发的一种脚本语言，常用于Windows系统管理和自动化任务，常见的漏洞类型包括代码注入漏洞、反序列化漏洞等。</span><br></pre></td></tr></table></figure>
+
+<h1 id="后门"><a href="#后门" class="headerlink" title="后门"></a>后门</h1><h2 id="后门是什么？有哪些后门？"><a href="#后门是什么？有哪些后门？" class="headerlink" title="后门是什么？有哪些后门？"></a>后门是什么？有哪些后门？</h2><p>后门（Backdoor）指的是一种意图隐藏在计算机系统中的软件或技术，它通常用于绕过正常的安全措施，从而使攻击者能够在系统中实施恶意活动。后门通常被安装在系统中的某个不易察觉的地方，例如操作系统、应用程序、网络协议等，从而使攻击者能够远程控制系统、窃取敏感信息、破坏系统功能等。</p>
+<blockquote>
+<p><strong>=&gt;</strong> 利用已知的漏洞或弱点进入系统，或者通过社交工程、钓鱼攻击等方式获取管理员权限并安装后门.</p>
+</blockquote>
+<p>简单来讲，偷偷开个门偷偷搞事情(doge)😂</p>
+<h3 id="网站后门"><a href="#网站后门" class="headerlink" title="网站后门"></a>网站后门</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Webshell后门：Webshell是一种可执行的脚本，可以将其嵌入到网站中，从而使攻击者能够远程访问和控制受感染的网站。</span><br><span class="line">             Webshell通常使用脚本语言编写，例如PHP、ASP、JSP等，攻击者可以通过Web浏览器或者其他远程工具进行访问和控制。</span><br><span class="line"></span><br><span class="line">文件上传后门：攻击者可以通过文件上传漏洞将恶意文件上传到受感染的网站上，然后通过远程访问这些文件来实现对网站的控制。</span><br><span class="line"></span><br><span class="line">SQL注入后门：攻击者可以利用SQL注入漏洞将恶意代码注入到网站的数据库中，然后通过执行这些代码来远程控制网站。</span><br><span class="line"></span><br><span class="line">逻辑漏洞后门：逻辑漏洞是指网站应用程序的设计或实现问题，攻击者可以利用这些漏洞来绕过网站的安全措施，</span><br><span class="line">            并将恶意代码或文件上传到网站上，从而实现对网站的控制。</span><br></pre></td></tr></table></figure>
+
+<h2 id="后门在安全测试中的实际意义"><a href="#后门在安全测试中的实际意义" class="headerlink" title="后门在安全测试中的实际意义"></a>后门在安全测试中的实际意义</h2><ol>
+<li>留后门：下次更方便的进来（至于为什么，懂的都懂）</li>
+<li>一种操作的管道。</li>
+<li>目的：更隐蔽的控制你</li>
+<li>深知攻击行为，然后再去反侦察，找到攻击源。</li>
+</ol>
+<h2 id="后门需要了解什么？有哪些玩法？"><a href="#后门需要了解什么？有哪些玩法？" class="headerlink" title="后门需要了解什么？有哪些玩法？"></a>后门需要了解什么？有哪些玩法？</h2><ol>
+<li>打开后直接触发等等</li>
+<li>隐匿控制（看你目的）</li>
+<li>免杀：正常的隐蔽文件，避免被安全软件杀掉。（核心）</li>
+</ol>
+<h3 id="免杀-很重要！"><a href="#免杀-很重要！" class="headerlink" title="免杀(很重要！)"></a>免杀(很重要！)</h3><blockquote>
+<p><strong>免杀（AV evasion）</strong> 是指恶意软件（如病毒、木马、间谍软件等）通过各种技术手段 <strong>绕过</strong> 杀毒软件、防火墙和其他 <strong>安全措施</strong> 的攻击方式。免杀技术可以让恶意软件避免被检测和拦截，从而更好地完成攻击行为。</p>
+</blockquote>
+<h4 id="常见的免杀技术"><a href="#常见的免杀技术" class="headerlink" title="常见的免杀技术"></a>常见的免杀技术</h4><blockquote>
+<p><strong>加密和压缩</strong> ：恶意软件的源代码被加密和压缩，使其难以被检测和分析。</p>
+<p><strong>多次变异</strong> ：恶意软件会在不同的计算机上多次变异，以逃避杀毒软件的检测。变异的方法包括改变代码的结构、函数名称、变量名称等。</p>
+<p><strong>驻留技术</strong> ：恶意软件会利用系统的自启动、服务、驱动程序等功能，将自己隐藏在操作系统的核心部分，使其难以被检测和清除。</p>
+<p><strong>DLL劫持</strong> ：恶意软件利用Windows操作系统加载DLL的方式，将自己伪装成合法的DLL文件，从而在系统启动时自动运行。</p>
+<p><strong>代码注入</strong> ：恶意软件将自己的代码注入到合法的进程中，以此控制系统并执行恶意操作。</p>
+</blockquote>
+<h4 id="免杀的实现方式"><a href="#免杀的实现方式" class="headerlink" title="免杀的实现方式"></a>免杀的实现方式</h4><ol>
+<li><strong>源码免杀</strong> :在有源码的情况下，可以定位特征码、加花指令、多层跳转、加无效指令、替换api、重写api、API伪调用等等，这部分内容较多且复杂</li>
+<li><strong>无源码免杀</strong> :在源码不好修改需要对exe进行免杀时，可以加资源、替换资源、加壳、加签名、PE优化、增加节数据等等。</li>
+<li><strong>powershell免杀</strong> :因为mimikatz有powershell版或者使用powershell可以加载，所以对powershell的脚本免杀也是一种方式。</li>
+<li><strong>加载器分离免杀</strong> :加载器就是利用了ShellCode和PE分离的方式来达到免杀的效果，不过很多只能加载基于RAW格式或固定格式的shellcode，对exe程序就无能无力了。</li>
+<li><strong>白名单免杀</strong> :白名单主要是使用了rundll32、msbuild、mshta、cscript等多个白名单程序来加载嵌入了木马的jscript脚本</li>
+</ol>
+<h1 id="WEB（非常重要）"><a href="#WEB（非常重要）" class="headerlink" title="WEB（非常重要）"></a>WEB（非常重要）</h1><h2 id="web组成架构模型"><a href="#web组成架构模型" class="headerlink" title="web组成架构模型"></a>web组成架构模型</h2><p>网站组成四部分，以后要思考漏洞在哪个层面。</p>
+<h3 id="网站源码（网站攻击比较多）"><a href="#网站源码（网站攻击比较多）" class="headerlink" title="网站源码（网站攻击比较多）"></a>网站源码（网站攻击比较多）</h3><p>① 脚本类型<br>② 应用方向 — 决定了攻击的方式（方向不同，写代码的函数也不同，漏洞也会因此不同）</p>
+<h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><blockquote>
+<p>=&gt; Windows Linux MacOS</p>
+</blockquote>
+<h3 id="中间件（搭建平台）"><a href="#中间件（搭建平台）" class="headerlink" title="中间件（搭建平台）"></a>中间件（搭建平台）</h3><p>Apache IIS Tomcat Niginx等</p>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>Access mysql Mysql Oracle Sybase Db2 postsql</p>
+<h2 id="架构漏洞安全测试简要介绍？"><a href="#架构漏洞安全测试简要介绍？" class="headerlink" title="架构漏洞安全测试简要介绍？"></a>架构漏洞安全测试简要介绍？</h2><ol>
+<li>漏洞就在上面的四种类型</li>
+<li>以后挖洞时要体会那属于哪个层面</li>
+<li>重点：以后搞漏洞时要注意漏洞有什么前提条件</li>
+</ol>
+<h2 id="为什么要从web层面为首"><a href="#为什么要从web层面为首" class="headerlink" title="为什么要从web层面为首"></a>为什么要从web层面为首</h2><ol>
+<li>Web主流，可以web得权提权</li>
+<li>有时候即使有操作系统漏洞，没满足一定条件，知道了也没用。</li>
+<li>某些软件一定程度上也是通过web浏览器包装的，解析出来就是一个纯粹的web页面</li>
+</ol>
+<h1 id="WEB安全漏洞"><a href="#WEB安全漏洞" class="headerlink" title="WEB安全漏洞"></a>WEB安全漏洞</h1><h2 id="WEB源码层面的漏洞"><a href="#WEB源码层面的漏洞" class="headerlink" title="WEB源码层面的漏洞"></a>WEB源码层面的漏洞</h2><ol>
+<li>SQL注入/XSS/文件上传/代码执行/变量覆盖/逻辑漏洞/反序列化等</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">常见web源码漏洞</span><br><span class="line">    git 源码泄露</span><br><span class="line">    svn 源码泄露</span><br><span class="line">    hg  源码泄漏</span><br><span class="line">    网站备份压缩文件</span><br><span class="line">    WEB-INF/web.xml 泄露</span><br><span class="line">    DS_Store文件泄露</span><br><span class="line">    SWP 文件泄露</span><br><span class="line">    CVS泄露</span><br><span class="line">    Bzr泄露</span><br><span class="line">    GitHub源码泄漏</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">web层面常见漏洞类型</span><br><span class="line"></span><br><span class="line">SQL注入漏洞：攻击者在输入的数据中注入SQL代码，从而让服务器执行恶意代码，可以获取敏感数据，修改数据库等。</span><br><span class="line">XSS漏洞：攻击者在网站的输出页面上注入恶意脚本，使得其他用户在访问这个页面时，会执行这些恶意脚本，从而获取敏感数据。</span><br><span class="line">文件上传漏洞：攻击者上传恶意文件到服务器上，可能导致服务器被入侵、系统被控制等。</span><br><span class="line">代码执行漏洞：攻击者可以通过构造恶意输入，使得服务器执行一些非预期的代码，从而达到攻击目的。</span><br><span class="line">变量覆盖漏洞：攻击者通过修改变量的值，可以影响程序的正常运行，甚至导致系统崩溃。</span><br><span class="line">逻辑漏洞：程序中存在漏洞，可以被攻击者利用来实现攻击目的，如越权访问、绕过认证等。</span><br><span class="line">反序列化漏洞：攻击者可以利用对象序列化的漏洞，构造恶意数据来攻击服务器。</span><br></pre></td></tr></table></figure>
+
+<h2 id="WEB中间件层面的漏洞"><a href="#WEB中间件层面的漏洞" class="headerlink" title="WEB中间件层面的漏洞"></a>WEB中间件层面的漏洞</h2><ol>
+<li>未授权访问等</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">（一） IIS</span><br><span class="line"><span class="number">1</span>、PUT漏洞</span><br><span class="line"><span class="number">2</span>、短文件名猜解</span><br><span class="line"><span class="number">3</span>、远程代码执行</span><br><span class="line"><span class="number">4</span>、解析漏洞</span><br><span class="line">（二） Apache</span><br><span class="line"><span class="number">1</span>、解析漏洞</span><br><span class="line"><span class="number">2</span>、目录遍历</span><br><span class="line">（三） Nginx</span><br><span class="line"><span class="number">1</span>、文件解析</span><br><span class="line"><span class="number">2</span>、目录遍历</span><br><span class="line"><span class="number">3</span>、CRLF注入</span><br><span class="line"><span class="number">4</span>、目录穿越</span><br><span class="line">（四）Tomcat</span><br><span class="line"><span class="number">1</span>、远程代码执行</span><br><span class="line"><span class="number">2</span>、war后门文件部署</span><br><span class="line">（五）jBoss</span><br><span class="line"><span class="number">1</span>、反序列化漏洞</span><br><span class="line"><span class="number">2</span>、war后门文件部署</span><br><span class="line">（六）WebLogic</span><br><span class="line"><span class="number">1</span>、反序列化漏洞</span><br><span class="line"><span class="number">2</span>、SSRF</span><br><span class="line"><span class="number">3</span>、任意文件上传</span><br><span class="line"><span class="number">4</span>、war后门文件部署</span><br><span class="line">（七）其它中间件相关漏洞</span><br><span class="line"><span class="number">1</span>、FastCGI未授权访问、任意命令执行</span><br><span class="line"><span class="number">2</span>、PHPCGI远程代码执行</span><br></pre></td></tr></table></figure>
+
+<h2 id="WEB数据库层面的漏洞"><a href="#WEB数据库层面的漏洞" class="headerlink" title="WEB数据库层面的漏洞"></a>WEB数据库层面的漏洞</h2><ol>
+<li>内核漏洞–分系统的</li>
+</ol>
+<h2 id="WEB系统层面的漏洞"><a href="#WEB系统层面的漏洞" class="headerlink" title="WEB系统层面的漏洞"></a>WEB系统层面的漏洞</h2><ol>
+<li>提权漏洞，源代码漏洞</li>
+<li>文件包含/上传漏洞</li>
+<li>命令注入漏洞</li>
+<li>缓冲区溢出漏洞等</li>
+</ol>
+<h2 id="第三方软件层面的漏洞"><a href="#第三方软件层面的漏洞" class="headerlink" title="第三方软件层面的漏洞"></a>第三方软件层面的漏洞</h2><p>(1) 电脑上的第三方软件</p>
+<h2 id="APP或PC应用层面的漏洞"><a href="#APP或PC应用层面的漏洞" class="headerlink" title="APP或PC应用层面的漏洞"></a>APP或PC应用层面的漏洞</h2><p>(1) 网站越简洁，漏洞越少；功能越多，出现漏洞的几率越大。</p>
+<p>(2) 客户端是另外一种网站，可能涉及逆向破解等。</p>
+<p>(3) APP套壳封装为网站，核心就是网站。</p>
+<p>(4) 可以从APP中剖析出各种各样的网站层面的Web协议，分析出APP涉及的网站信息，再转到网站进行安全测试（可以还原为Web页面）。<br>如果无法还原，则需要进行逆向工程等操作。</p>
+<h1 id="参考及资料"><a href="#参考及资料" class="headerlink" title="参考及资料"></a>参考及资料</h1><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1594781">常见的Web源码泄漏漏洞及其利用</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/bylfsj/article/details/102683791">web中间件常见漏洞</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/1-Ry/p/15547701.html">初探免杀之路——免杀方法测试</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yzloo/p/10391078.html">常见十大漏洞</a><br><a target="_blank" rel="noopener" href="https://owasp.org/Top10/">OWASP Top 10</a>–每4年更新一次<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/363764954">理解Linux内核漏洞</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46694260/article/details/121707869?ops_request_misc=&request_id=&biz_id=102&utm_term=%20%E5%8D%81%E5%A4%A7%E6%BC%8F%E6%B4%9E&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-4-121707869.142%5Ev73%5Epc_search_v2,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&spm=1018.2226.3001.4187">OWASP top 10漏洞</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">矢幽武</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/03/08/SEC-Study-0003/">http://example.com/2023/03/08/SEC-Study-0003/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">矢幽武博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SEC/">SEC</a></div><div class="post_share"><div class="social-share" data-image="/img/backgroude/b11.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/09/SEC-tool-0001/" title="SEC-工具学习-0001-X-Scan,SwitchSniffer"><img class="cover" src="/img/backgroude/b21.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SEC-工具学习-0001-X-Scan,SwitchSniffer</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/07/PHP-Study-014/" title="PHP学习日志-014(放缓)"><img class="cover" src="/img/backgroude/b40.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PHP学习日志-014(放缓)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/09/04/SEC-Study-0085/" title="SEC-2022版-0054-APP攻防-2-Xposed&amp;Frida&amp;Hook&amp;证书校验&amp;反代理&amp;代理转发"><img class="cover" src="/img/backgroude/b2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-04</div><div class="title">SEC-2022版-0054-APP攻防-2-Xposed&amp;Frida&amp;Hook&amp;证书校验&amp;反代理&amp;代理转发</div></div></a></div><div><a href="/2023/09/03/SEC-Study-0084/" title="SEC-2022版-0053-APP攻防-1-Frida反证书抓包&amp;移动安全系统&amp;资产提取&amp;评估扫描"><img class="cover" src="/img/backgroude/b8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-03</div><div class="title">SEC-2022版-0053-APP攻防-1-Frida反证书抓包&amp;移动安全系统&amp;资产提取&amp;评估扫描</div></div></a></div><div><a href="/2023/09/02/SEC-Study-0083/" title="SEC-2022版-0052-API攻防-2-接口安全&amp;阿里云KEY&amp;Postman&amp;XXE&amp;DVWS&amp;鉴权&amp;泄漏"><img class="cover" src="/img/backgroude/b7.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-02</div><div class="title">SEC-2022版-0052-API攻防-2-接口安全&amp;阿里云KEY&amp;Postman&amp;XXE&amp;DVWS&amp;鉴权&amp;泄漏</div></div></a></div><div><a href="/2023/08/10/SEC-Study-0081/" title="SEC-2022版-0051-服务攻防-10-框架安全&amp;CVE复现&amp;Apache Shiro&amp;Apache Solr"><img class="cover" src="/img/backgroude/b36.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-10</div><div class="title">SEC-2022版-0051-服务攻防-10-框架安全&amp;CVE复现&amp;Apache Shiro&amp;Apache Solr</div></div></a></div><div><a href="/2023/08/10/SEC-Study-0082/" title="SEC-2022版-0051-API攻防-1-接口安全&amp;WebPack&amp;REST&amp;SOAP&amp;WSDL&amp;WebService"><img class="cover" src="/img/backgroude/b11.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-10</div><div class="title">SEC-2022版-0051-API攻防-1-接口安全&amp;WebPack&amp;REST&amp;SOAP&amp;WSDL&amp;WebService</div></div></a></div><div><a href="/2023/08/06/SEC-Study-0080/" title="SEC-2022版-0050-服务攻防-09-框架安全&amp;CVE复现&amp;Django&amp;Flask&amp;Node.JS&amp;JQuery"><img class="cover" src="/img/backgroude/b22.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-06</div><div class="title">SEC-2022版-0050-服务攻防-09-框架安全&amp;CVE复现&amp;Django&amp;Flask&amp;Node.JS&amp;JQuery</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">矢幽武</div><div class="author-info__description">生灵造物，百力奋心<br>机遇自争，各凭本事<br>没有攻不破的系统 ，<br> 只有不努力的黑客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/linxiao-wangchuan"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><b><font color="#e66b6d">威</font> <font color="#e66d98">武</font> <font color="#e66cc6">不</font> <font color="#cc6de6">屈</font> ,<font color="#9770e6">成</font> <font color="#6d93e6">为</font> <font color="#6fcde6">自</font> <font color="#72e6b6">己</font> <font color="#72e689">不败的</font> <font color="#99e670">信条</font>, <font color="#cde670">剑</font> <font color="#e6df72">走</font> <font color="#e6c073">偏</font> <font color="#e6a271">锋</font> ,<font color="#e6796f">缥</font> <font color="#e65454">缈</font> <font color="#e63333">孤</font> <font color="#e62c2c">鸿</font> <font color="#e60101">影</font> <font color="#e60101"> --孤志</font></b> <p align="center"><img src="https://haiyong.site/img/img-blog.csdnimg.cn/f7384c88956d4378b72e47548e19c9f8.gif" width="50" alt="mao"></p> <p align="center" style="color:yellow;font-weight:800">微信号：无</p> <p align="center" style="color:red;font-weight:800">QQ：无</p> -------------------------------- <p style="color:#5a1216;font-weight:800">每日更新指南：</p> <p style="color:#4d1018;font-weight:800">刷题/记录总知识一般会沿用上次的文档</p> <p style="color:#f03752;font-weight:800">学习新知将新开文档</p></div></div><div class="xpand" style="height:10px;"></div><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">脚本语言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">常见脚本语言概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80%E5%AF%B9%E5%BA%94%E7%9A%84%E6%A1%86%E6%9E%B6-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.</span> <span class="toc-text">脚本语言对应的框架(概述)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.3.</span> <span class="toc-text">脚本语言与安全漏洞的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E4%B8%8E%E8%84%9A%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.4.</span> <span class="toc-text">漏洞挖掘代码审计与脚本类型的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%84%9A%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E7%9A%84%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">常见的脚本类型及其相关的漏洞类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E9%97%A8"><span class="toc-number">2.</span> <span class="toc-text">后门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E9%97%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E5%90%8E%E9%97%A8%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">后门是什么？有哪些后门？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%90%8E%E9%97%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">网站后门</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E9%97%A8%E5%9C%A8%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84%E5%AE%9E%E9%99%85%E6%84%8F%E4%B9%89"><span class="toc-number">2.2.</span> <span class="toc-text">后门在安全测试中的实际意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E9%97%A8%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%89%E5%93%AA%E4%BA%9B%E7%8E%A9%E6%B3%95%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">后门需要了解什么？有哪些玩法？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8D%E6%9D%80-%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%81"><span class="toc-number">2.3.1.</span> <span class="toc-text">免杀(很重要！)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%8D%E6%9D%80%E6%8A%80%E6%9C%AF"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">常见的免杀技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%8D%E6%9D%80%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">免杀的实现方式</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB%EF%BC%88%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">WEB（非常重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#web%E7%BB%84%E6%88%90%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">web组成架构模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E6%BA%90%E7%A0%81%EF%BC%88%E7%BD%91%E7%AB%99%E6%94%BB%E5%87%BB%E6%AF%94%E8%BE%83%E5%A4%9A%EF%BC%89"><span class="toc-number">3.1.1.</span> <span class="toc-text">网站源码（网站攻击比较多）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.1.2.</span> <span class="toc-text">操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%88%E6%90%AD%E5%BB%BA%E5%B9%B3%E5%8F%B0%EF%BC%89"><span class="toc-number">3.1.3.</span> <span class="toc-text">中间件（搭建平台）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.1.4.</span> <span class="toc-text">数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E6%BC%8F%E6%B4%9E%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">架构漏洞安全测试简要介绍？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BB%8Eweb%E5%B1%82%E9%9D%A2%E4%B8%BA%E9%A6%96"><span class="toc-number">3.3.</span> <span class="toc-text">为什么要从web层面为首</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.</span> <span class="toc-text">WEB安全漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB%E6%BA%90%E7%A0%81%E5%B1%82%E9%9D%A2%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.1.</span> <span class="toc-text">WEB源码层面的漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%B1%82%E9%9D%A2%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.2.</span> <span class="toc-text">WEB中间件层面的漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B1%82%E9%9D%A2%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.3.</span> <span class="toc-text">WEB数据库层面的漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WEB%E7%B3%BB%E7%BB%9F%E5%B1%82%E9%9D%A2%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.4.</span> <span class="toc-text">WEB系统层面的漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6%E5%B1%82%E9%9D%A2%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.5.</span> <span class="toc-text">第三方软件层面的漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APP%E6%88%96PC%E5%BA%94%E7%94%A8%E5%B1%82%E9%9D%A2%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.6.</span> <span class="toc-text">APP或PC应用层面的漏洞</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8F%8A%E8%B5%84%E6%96%99"><span class="toc-number">5.</span> <span class="toc-text">参考及资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具"><img src="/img/backgroude/b14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SEC-工具-认识kali部分工具"/></a><div class="content"><a class="title" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具">SEC-工具-认识kali部分工具</a><time datetime="2024-01-06T02:12:32.000Z" title="发表于 2024-01-06 10:12:32">2024-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置"><img src="/img/backgroude/b41.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kali虚拟机网卡配置"/></a><div class="content"><a class="title" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置">kali虚拟机网卡配置</a><time datetime="2024-01-05T06:15:45.000Z" title="发表于 2024-01-05 14:15:45">2024-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试"><img src="/img/backgroude/b19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试学习-渗透测试"/></a><div class="content"><a class="title" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试">面试学习-渗透测试</a><time datetime="2023-12-19T06:27:03.000Z" title="发表于 2023-12-19 14:27:03">2023-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题"><img src="/img/backgroude/b11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web习题--033--某赛题"/></a><div class="content"><a class="title" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题">CTF之Web习题--033--某赛题</a><time datetime="2023-11-29T00:19:08.000Z" title="发表于 2023-11-29 08:19:08">2023-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境"><img src="/img/backgroude/b43.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web总结--协议/系统/环境"/></a><div class="content"><a class="title" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境">CTF之Web总结--协议/系统/环境</a><time datetime="2023-10-13T14:19:08.000Z" title="发表于 2023-10-13 22:19:08">2023-10-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 矢幽武</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, {"emotion":"twemoji","placeholder":"在此处输入评论"}))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || ![object Object]) {
+    if ([object Object]) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="/js/sun_moon.js" async></script><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = '/2022/,/2023/,/2024/'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'eb7ef47cda914d65b0b394ce50c15242';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'true';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>

